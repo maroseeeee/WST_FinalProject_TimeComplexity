@@ -1,0 +1,135 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    background-position: left;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    font-family: 'Nunito', sans-serif;
+    color: black;
+}
+
+.sort-button {
+    background-image: linear-gradient(15deg, #13547a 0%, #80d0c7 100%);
+    color: white;
+    border: none;
+    border-radius: 35px;
+    padding: 10px 10px; 
+    font-size: 18px;
+    cursor: pointer;
+    white-space: nowrap;  
+    margin-top: 10px;
+}
+
+#cover {
+    font-family: 'Nunito', sans-serif;
+    position: relative;
+    width: 100%;
+    padding-top: 9vh;
+    min-height: 130vh;
+    display: block;
+    overflow: auto;
+    background: linear-gradient(0deg, 
+        rgba(224, 188, 204, 1) 0%,   
+        rgba(235, 197, 189, 1) 65%    
+    );
+    word-wrap: normal;
+}
+
+#description-box {
+    margin: auto;
+    padding-right: 3vw;
+    padding-left: 3vw;
+    font-size: 23px;
+    max-width: 850px;
+    position: relative;
+}
+
+p {
+    display: block;
+    margin-block-start: 1em;
+}
+
+#description-box button {
+    background-color: #6E605F;
+    outline: none;
+    border: none;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 160px;
+    height: 60px;
+    border-radius: 35px;
+    font-size: 25px;
+}
+
+.footer {
+    width: 100%;
+    font-family: 'Nunito', sans-serif;
+    color: #F1F8F3;
+    padding-top: 30px;
+    padding-bottom: 15px;
+    position: relative;
+    background-color: rgb(22, 22, 22);
+    font-size: 20px;
+    white-space: nowrap;
+}
+
+.footer-container {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center; 
+    width: 70%; 
+    gap: 10rem; 
+}
+
+.footer-content {
+    margin-bottom: 10px; 
+    vertical-align: top;
+    text-decoration: none;
+}
+
+.footer-title {
+    color: #E0BCCC;
+    font-size: 25px;
+}
+
+
+@media only screen and (max-width: 850px) {
+    #header {
+        font-size: 10vw;
+        margin-right: 10%;
+    }
+}
+
+@media only screen and (min-height: 1081px) {
+    #cover {
+        min-height: 100vh;
+    }
+}
+
+@media only screen and (max-width: 700px) {
+    #description-box {
+        font-size: 16px;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .sort-button {
+        width: 120px;
+        font-size: 16px;
+    }
+
+    #description-box {
+        font-size: 14px;
+    }
+}

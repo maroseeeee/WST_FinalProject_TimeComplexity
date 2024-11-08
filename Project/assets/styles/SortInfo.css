@@ -1,0 +1,152 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+
+body {
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+#sort-cover {
+    position: relative;
+    background: linear-gradient(0deg, 
+        rgba(224, 188, 204, 1) 0%,   
+        rgba(235, 197, 189, 1) 65%    
+    );
+    min-height: 100vh;
+    width: 100%;
+    display: block;
+    overflow: auto;
+}
+
+.info-parent {
+    width: 90%;
+    margin: 12rem auto;
+    color: black;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap; 
+}
+
+.sort-description {
+    margin-left: 60px;
+    font-size: 28px;
+    max-width: 50%;
+    text-align: justify;
+}
+
+.sort-description h2 {
+    font-family: "Nunito", serif;
+    font-size: 35px;
+}
+
+.table-box {
+    margin-left: 20px;
+    text-align: left;
+    max-width: 40%;
+}
+
+.table-box h2 {
+    font-family: "Nunito", serif;
+    font-size: 35px;
+}
+
+.sort-table {
+    margin-top: 30px;
+    border-collapse: collapse;
+    border-radius: 5px;
+    width: 100%;
+}
+
+.sort-table th {
+    border-right: 2px solid #6E605F;
+    padding: 10px;
+}
+
+.sort-table th, .sort-table td {
+    border: 2px solid #6E605F;
+}
+
+.sort-table td {
+    padding: 10px;
+}
+
+.start-button {
+    display: inline-block;
+    margin: 20px 3rem;
+    padding: 10px 20px;
+    font-size: 18px;
+    color: white;
+    background-color: #6E605F;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.start-button:hover {
+    background-color: #5B4A45;
+}
+
+
+@media only screen and (max-width: 1100px) {
+    .info-parent {
+        flex-direction: column; 
+        margin: 6rem auto; 
+    }
+
+    .sort-description {
+        max-width: 100%;
+        font-size: 17px;
+        margin-left: 0;
+    }
+
+    .table-box {
+        max-width: 100%;
+        margin-left: 0;
+    }
+
+    .sort-table {
+        font-size: 19px;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .sort-description {
+        font-size: 15px;
+        margin-left: 0; 
+    }
+
+    .sort-description h2 {
+        font-size: 28px;
+    }
+
+    .start-button {
+        font-size: 16px;
+        padding: 8px 16px;
+    }
+
+    .info-parent {
+        margin: 4rem auto; 
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .sort-description {
+        font-size: 14px;
+    }
+
+    .table-box {
+        margin-left: 0;
+        max-width: 100%;
+    }
+
+    .sort-table {
+        font-size: 16px;
+    }
+
+    .start-button {
+        font-size: 14px;
+        padding: 6px 12px;
+    }
+}
