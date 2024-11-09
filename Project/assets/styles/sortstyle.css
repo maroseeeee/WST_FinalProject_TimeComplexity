@@ -70,7 +70,7 @@ button {
     color: white;
 }
 
-#randomize, #start {
+#randomize, #stop, #start, #pause {
     background-color: gray;
     color: #ffffff
 }
