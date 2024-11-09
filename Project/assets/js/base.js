@@ -41,6 +41,9 @@ function loadNavbar() {
             document.getElementById('exercises-link').addEventListener('click', function () {
                 window.location.href = '/templates/exercises.html';
             });
+            document.getElementById('history').addEventListener('click', function () {
+                window.location.href = '/templates/history.html';
+            });
 
             
             document.getElementById('logout-link').addEventListener('click', function () {
