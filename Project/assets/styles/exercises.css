@@ -41,6 +41,28 @@ body {
     background: #EBC5BD;
 }
 
+.buttons {
+    display: flex;
+    justify-content: center; 
+    gap: 10px;
+    width: 100%; 
+    margin: 0 auto; 
+}
+
+button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background: #6E605F;
+    color: white;
+}
+
+#randomize, #stop, #start, #pause {
+    background-color: gray;
+    color: #ffffff
+}
+
 .submit-container {
    display: flex;
     flex-direction: column;
@@ -63,7 +85,6 @@ body {
     font-size: 16px;
     cursor: pointer;
     align-self: center; 
-    margin-top: auto; 
 }
 
 #submit:hover {
@@ -75,6 +96,7 @@ body {
     align-items: center;
     margin-top: 20px;
     gap: 15px;
+    margin-left: -18rem; 
 }
 
 .arrow-button {
