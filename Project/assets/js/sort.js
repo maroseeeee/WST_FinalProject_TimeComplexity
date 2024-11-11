@@ -188,7 +188,7 @@ document.addEventListener("DOMContentLoaded", () => {
         setSpeed();
         const maxOriginalHeight = Math.max(...originalHeights);
         const heightScalingFactor = containerHeight * 0.6 / maxOriginalHeight;
-    
+
         for (let i = 0; i < bars.length - 1; i++) {
             let minOrMaxIndex = i;
     
@@ -197,7 +197,17 @@ document.addEventListener("DOMContentLoaded", () => {
             for (let j = i + 1; j < bars.length; j++) {
                 bars[j].style.backgroundColor = "orange";
                 
+                if (isStopped) {
+                    bars[i].style.backgroundColor = "";
+                    bars[j].style.backgroundColor = "";
+                    return;
+                }
+
                 await new Promise(resolve => setTimeout(resolve, delay));
+
+                while (isPaused) {
+                    await new Promise(resolve => setTimeout(resolve, 100));
+                }
                 
                 const height1 = originalHeights[minOrMaxIndex];
                 const height2 = originalHeights[j];
@@ -246,7 +256,18 @@ document.addEventListener("DOMContentLoaded", () => {
                     (order === "descending" && originalHeights[j - 1] < heightToInsert))) {
                 
                 bars[j - 1].style.backgroundColor = "orange";
+
+                if (isStopped) {
+                    bars[i].style.backgroundColor = "";
+                    bars[j - 1].style.backgroundColor = "";
+                    return;
+                }
+
                 await new Promise(resolve => setTimeout(resolve, delay));
+
+                while (isPaused) {
+                    await new Promise(resolve => setTimeout(resolve, 100));
+                }
     
                 originalHeights[j] = originalHeights[j - 1];
                 bars[j].style.height = `${originalHeights[j] * heightScalingFactor}px`;
@@ -275,6 +296,7 @@ document.addEventListener("DOMContentLoaded", () => {
         setSpeed();
         const maxOriginalHeight = Math.max(...originalHeights);
         const heightScalingFactor = containerHeight * 0.6 / maxOriginalHeight;
+        startButton.disabled = true;
     
         async function merge(arr, left, mid, right) {
             let leftArray = arr.slice(left, mid + 1);
@@ -284,6 +306,8 @@ document.addEventListener("DOMContentLoaded", () => {
             while (i < leftArray.length && j < rightArray.length) {
 
                 if (isStopped) {
+                    bars[left + i].style.backgroundColor = "";
+                    bars[mid + 1 + j].style.backgroundColor = "";
                     return; 
                 }
     
@@ -357,6 +381,7 @@ document.addEventListener("DOMContentLoaded", () => {
         setSpeed();
         const maxOriginalHeight = Math.max(...originalHeights);
         const heightScalingFactor = containerHeight * 0.6 / maxOriginalHeight;
+        startButton.disabled = true;
     
         function swap(arr, i, j) {
             const temp = arr[i];
