@@ -106,8 +106,14 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
-document.getElementById("signin").addEventListener("click", function(e) { // sign up here
-    e.preventDefault();
+document.getElementById("signin").addEventListener("click", function(e) {
+    e.preventDefault(); 
+    const form = e.target.closest("form");
+    if (!form.checkValidity()) {
+        form.reportValidity(); 
+        return; 
+    }
+
     const username = document.getElementById("newUsername").value;
     const email = document.getElementById("newEmail").value;
     const password = document.getElementById("newPassword").value;
@@ -172,10 +178,13 @@ document.getElementById("signin").addEventListener("click", function(e) { // sig
             successDiv.style.borderRadius = "5px";
             successDiv.style.fontSize = "16px";
             successDiv.style.zIndex = "1000";
-
             document.body.appendChild(successDiv);
 
-            setTimeout(function() { successDiv.remove(); }, 500);
+            setTimeout(function() { successDiv.remove(); }, 1000); 
+            setTimeout(function() {
+                const container = document.getElementById("container");
+                container.classList.remove("active");
+            }, 1700); 
         }
     }).catch((error) => {
         console.error("Error checking username: ", error);
