@@ -1,5 +1,5 @@
 function loadNavbar() {
-    fetch('/templates/base.html')
+    fetch('/Project/templates/base.html')
         .then(response => response.text())
         .then(data => {
             const navbarPlaceholder = document.getElementById('navbar-placeholder');
@@ -9,45 +9,47 @@ function loadNavbar() {
             const slider = document.querySelector('.sidebar');
 
             document.getElementById('navbar-title').addEventListener('click', function () {
-                window.location.href = '/templates/index.html';
+                window.location.href = '/Project/templates/index.html';
             });
 
           
             document.getElementById('home-link').addEventListener('click', function () {
-                window.location.href = '/templates/index.html';
+                window.location.href = '/Project/templates/index.html';
             });
 
             document.getElementById('bubble-sort').addEventListener('click', function () {
-                window.location.href = '/sorts/Bubble_Sort.html';
+                window.location.href = '/Project/sorts/Bubble_Sort.html';
             });
 
             document.getElementById('selection-sort').addEventListener('click', function () {
-                window.location.href = '/sorts/Selection_Sort.html';
+                window.location.href = '/Project/sorts/Selection_Sort.html';
             });
 
             document.getElementById('insertion-sort').addEventListener('click', function () {
-                window.location.href = '/sorts/Insertion_Sort.html';
+                window.location.href = '/Project/sorts/Insertion_Sort.html';
             });
 
             document.getElementById('merge-sort').addEventListener('click', function () {
-                window.location.href = '/sorts/Merge_Sort.html';
+                window.location.href = '/Project/sorts/Merge_Sort.html';
             });
 
             document.getElementById('quick-sort').addEventListener('click', function () {
-                window.location.href = '/sorts/Quick_Sort.html';
+                window.location.href = '/Project/sorts/Quick_Sort.html';
             });
 
            
             document.getElementById('exercises-link').addEventListener('click', function () {
-                window.location.href = '/templates/exercises.html';
+                window.location.href = '/Project/templates/exercises.html';
             });
-            document.getElementById('history').addEventListener('click', function () {
-                window.location.href = '/templates/history.html';
-            });
+
+            // comment muna, hindi naopen navbar
+            // document.getElementById('history').addEventListener('click', function () {
+            //     window.location.href = '/Project/templates/history.html';
+            // });
 
             
             document.getElementById('logout-link').addEventListener('click', function () {
-                window.location.href = '/templates/home.html';
+                window.location.href = '/Project/templates/home.html';
             });
 
             

@@ -26,8 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let bars = [];
     let originalHeights = [];
     let delay = 100;
-    const containerHeight = barsContainer.clientHeight;
-    let running = true;   
+    const containerHeight = barsContainer.clientHeight;   
 
     function setSpeed() {
         const speed = speedSelect.value;
@@ -106,8 +105,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let isSortInProgress = false;
 
     startButton.addEventListener("click", () => {
-        if (!isSortInProgress) {
-            isSortInProgress = true;
+        if (isSortInProgress = true) {
             startButton.disabled = true;
         }
         if (isStopped) {
@@ -130,6 +128,7 @@ document.addEventListener("DOMContentLoaded", () => {
         setSpeed();
         const maxOriginalHeight = Math.max(...originalHeights);
         const heightScalingFactor = containerHeight * 0.6 / maxOriginalHeight;
+        isSortInProgress = true;
     
         for (let i = 0; i < bars.length - 1; i++) {
             for (let j = 0; j < bars.length - i - 1; j++) {
@@ -188,6 +187,7 @@ document.addEventListener("DOMContentLoaded", () => {
         setSpeed();
         const maxOriginalHeight = Math.max(...originalHeights);
         const heightScalingFactor = containerHeight * 0.6 / maxOriginalHeight;
+        isSortInProgress = true;
 
         for (let i = 0; i < bars.length - 1; i++) {
             let minOrMaxIndex = i;
@@ -244,6 +244,7 @@ document.addEventListener("DOMContentLoaded", () => {
         setSpeed();
         const maxOriginalHeight = Math.max(...originalHeights);
         const heightScalingFactor = containerHeight * 0.6 / maxOriginalHeight;
+        isSortInProgress = true;
     
         for (let i = 1; i < bars.length; i++) {
             let j = i;
@@ -296,7 +297,7 @@ document.addEventListener("DOMContentLoaded", () => {
         setSpeed();
         const maxOriginalHeight = Math.max(...originalHeights);
         const heightScalingFactor = containerHeight * 0.6 / maxOriginalHeight;
-        startButton.disabled = true;
+        isSortInProgress = true;
     
         async function merge(arr, left, mid, right) {
             let leftArray = arr.slice(left, mid + 1);
@@ -381,7 +382,7 @@ document.addEventListener("DOMContentLoaded", () => {
         setSpeed();
         const maxOriginalHeight = Math.max(...originalHeights);
         const heightScalingFactor = containerHeight * 0.6 / maxOriginalHeight;
-        startButton.disabled = true;
+        isSortInProgress = true;
     
         function swap(arr, i, j) {
             const temp = arr[i];
@@ -461,9 +462,13 @@ document.addEventListener("DOMContentLoaded", () => {
         isSortingInProgress = false;
     }    
 
-    randomizeButton.addEventListener("click", () => generateBars(arraySizeInput.value));
+    randomizeButton.addEventListener("click", () => {
+        isStopped = true;
+        generateBars(arraySizeInput.value)
+        startButton.disabled = false;
+    });
+
     startButton.addEventListener("click", () => {
-        running = true; 
         const order = document.querySelector('input[name="order"]:checked').value; 
         switch(sortingAlgorithm.value) {
             case "Bubble Sort":
