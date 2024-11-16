@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/Project/assets/styles/login.css" />
+    <link rel="stylesheet" href="/assets/styles/login.css" />
     <link
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
@@ -29,7 +29,7 @@
                 </div>
                 
                 <div class="input-box">
-                    <input type="password" placeholder="Password" id="newPassword" required minlength="4"/>
+                    <input type="password" placeholder="Password" id="newPassword" required/>
                     <i class="fa-solid fa-lock"></i>
                 </div>
                 <div class="input-box">
@@ -66,28 +66,11 @@
             <form>
                 <h1>Forgot Password</h1>
                 <div class="input-box">
-                    <input type="email" placeholder="Enter your email" required />
+                    <input type="email" placeholder="Enter your email" id="resetPass" required />
                     <i class="fa-solid fa-envelope"></i>
                 </div>
-                <button type="submit">Reset Password</button>
+                <button type="submit" id="resetBut">Reset Password</button>
                 <a href="#" id="back-to-login">Back to Login</a>
-            </form>
-        </div>
-
-        <div class="reset-password">
-            <form>
-                <h1>Reset Password</h1>
-                <h4>Your password must be atleast 4 characters</h4>
-                <div class="input-box">
-                    <input type="password" placeholder="New Password" id="newPasswordReset" required />
-                    <i class="fa-solid fa-lock"></i>
-                </div>
-                <div class="input-box">
-                    <input type="password" placeholder="Confirm Password" id="confirmPasswordReset" required />
-                    <i class="fa-solid fa-lock"></i>
-                </div>
-                <button type="submit">Reset</button>
-                <a href="#" id="reset-back-to-login">Back to Login</a>
             </form>
         </div>
 
@@ -106,182 +89,122 @@
             </div>
         </div>
     </div>
-    <script type="module"> // ayaw if external huhu
+    <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
-import { getDatabase, ref, set, get, child } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-database.js";
+        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
+        import { getDatabase, ref, set, get } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-database.js";
+    
+        const firebaseConfig = {
+            apiKey: "AIzaSyDVvkfslAMz95HfF0-5EIvq7ZZNmyIlsrM",
+            authDomain: "algosortit.firebaseapp.com",
+            databaseURL: "https://algosortit-default-rtdb.firebaseio.com",
+            projectId: "algosortit",
+            storageBucket: "algosortit.firebasestorage.app",
+            messagingSenderId: "1029666460693",
+            appId: "1:1029666460693:web:5161c3ac023a2c89eeea1c"
+        };
+    
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const database = getDatabase(app);
+    
+        // Signup ito
+        document.getElementById("signin").addEventListener("click", async function (e) {
+            e.preventDefault();
+            const username = document.getElementById("newUsername").value;
+            const email = document.getElementById("newEmail").value;
+            const password = document.getElementById("newPassword").value;
+            const confirmPassword = document.getElementById("confirm").value;
+    
+            if (password !== confirmPassword) {
+                showAlert("Passwords do not match!", "red");
+                return;
+            }
+    
+            try {
+                const usernameRef = ref(database, `usernames/${username}`);
+                const snapshot = await get(usernameRef);
+    
+                if (snapshot.exists()) {
+                    showAlert("Username already exists!", "orange");
+                    return;
+                }
+    
+                const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+                const user = userCredential.user;
+    
+                await set(ref(database, `usernames/${username}`), {
+                    email: email
+                });
+    
+                showAlert("Account created successfully!", "green");
+            } catch (error) {
+                showAlert(`Error: ${error.message}`, "red");
+            }
+        });
+    
+        // Login ito
+        document.getElementById("getIn").addEventListener("click", async function (e) {
+            e.preventDefault();
+            const username = document.getElementById("getUsername").value;
+            const password = document.getElementById("getPassword").value;
+    
+            try {
+                const usernameRef = ref(database, `usernames/${username}`);
+                const snapshot = await get(usernameRef);
+    
+                if (!snapshot.exists()) {
+                    showAlert("Username not found!", "red");
+                    return;
+                }
+    
+                const email = snapshot.val().email;
+    
+                await signInWithEmailAndPassword(auth, email, password);
+                showAlert("Login successful!", "green");
+                setTimeout(() => {
+                    window.location.href = "index.html";
+                }, 1000);
+            } catch (error) {
+                showAlert(`Error: ${error.message}`, "red");
+            }
+        });
 
-const firebaseConfig = {
-    apiKey: "AIzaSyDVvkfslAMz95HfF0-5EIvq7ZZNmyIlsrM",
-    authDomain: "algosortit.firebaseapp.com",
-    databaseURL: "https://algosortit-default-rtdb.firebaseio.com",
-    projectId: "algosortit",
-    storageBucket: "algosortit.firebasestorage.app",
-    messagingSenderId: "1029666460693",
-    appId: "1:1029666460693:web:5161c3ac023a2c89eeea1c"
-};
-
-const app = initializeApp(firebaseConfig);
-const db = getDatabase(app);
-
-document.getElementById("signin").addEventListener("click", function(e) {
-    e.preventDefault(); 
-    const form = e.target.closest("form");
-    if (!form.checkValidity()) {
-        form.reportValidity(); 
-        return; 
-    }
-
-    const username = document.getElementById("newUsername").value;
-    const email = document.getElementById("newEmail").value;
-    const password = document.getElementById("newPassword").value;
-    const checker = document.getElementById("confirm").value;
-
-    if (password != checker) {
-        const alertDiv = document.createElement("div");
-        alertDiv.textContent = "Passwords not matching.";
-        alertDiv.style.position = "fixed";
-        alertDiv.style.top = "10px";
-        alertDiv.style.left = "50%";
-        alertDiv.style.transform = "translateX(-50%)";
-        alertDiv.style.padding = "10px 20px";
-        alertDiv.style.backgroundColor = "red";
-        alertDiv.style.color = "white";
-        alertDiv.style.borderRadius = "5px";
-        alertDiv.style.fontSize = "16px";
-        alertDiv.style.zIndex = "1000";
-
-        document.body.appendChild(alertDiv);
-
-        setTimeout(function() { alertDiv.remove(); }, 1000);
-
-        return;
-    }
-
-    const userRef = ref(db, 'user/' + username); // if username exists already
-    get(userRef).then((snapshot) => {
-        if (snapshot.exists()) {
+        // Reset Password ito
+        document.getElementById("resetBut").addEventListener("click", function (e) {
+            const email = document.getElementById("resetPass").value;
+            sendPasswordResetEmail(auth, email)
+            .then(() => {
+                showAlert("Email sent", "green");
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                showAlert(errorMessage, "red");
+            });
+        });
+    
+        function showAlert(message, color) {
             const alertDiv = document.createElement("div");
-            alertDiv.textContent = "Username already exists.";
+            alertDiv.textContent = message;
             alertDiv.style.position = "fixed";
             alertDiv.style.top = "10px";
             alertDiv.style.left = "50%";
             alertDiv.style.transform = "translateX(-50%)";
             alertDiv.style.padding = "10px 20px";
-            alertDiv.style.backgroundColor = "orange";
+            alertDiv.style.backgroundColor = color;
             alertDiv.style.color = "white";
             alertDiv.style.borderRadius = "5px";
             alertDiv.style.fontSize = "16px";
             alertDiv.style.zIndex = "1000";
-
+    
             document.body.appendChild(alertDiv);
-
-            setTimeout(function() { alertDiv.remove(); }, 500);
-        } 
-        if (password.length >= 4 && !snapshot.exists()) { // creates
-            set(userRef, {
-                username: username,
-                email: email,
-                password: password
-            });
-            const successDiv = document.createElement("div");
-            successDiv.textContent = "Account created successfully!";
-            successDiv.style.position = "fixed";
-            successDiv.style.top = "10px";
-            successDiv.style.left = "50%";
-            successDiv.style.transform = "translateX(-50%)";
-            successDiv.style.padding = "10px 20px";
-            successDiv.style.backgroundColor = "green";
-            successDiv.style.color = "white";
-            successDiv.style.borderRadius = "5px";
-            successDiv.style.fontSize = "16px";
-            successDiv.style.zIndex = "1000";
-            document.body.appendChild(successDiv);
-
-            setTimeout(function() { successDiv.remove(); }, 1000); 
-            setTimeout(function() {
-                const container = document.getElementById("container");
-                container.classList.remove("active");
-            }, 1700); 
+    
+            setTimeout(() => {
+                alertDiv.remove();
+            }, 2000);
         }
-    }).catch((error) => {
-        console.error("Error checking username: ", error);
-    });
-});
-
-
-document.getElementById("getIn").addEventListener("click", function(e) { // log in here
-    e.preventDefault();
-    const username = document.getElementById("getUsername").value;
-    const password = document.getElementById("getPassword").value;
-
-    if (username == "" || password == "") {
-        const successDiv = document.createElement("div");
-        successDiv.textContent = "Please input Username and Password.";
-        successDiv.style.position = "fixed";
-        successDiv.style.top = "10px";
-        successDiv.style.left = "50%";
-        successDiv.style.transform = "translateX(-50%)";
-        successDiv.style.padding = "10px 20px";
-        successDiv.style.backgroundColor = "red";
-        successDiv.style.color = "white";
-        successDiv.style.borderRadius = "5px";
-        successDiv.style.fontSize = "16px";
-        successDiv.style.zIndex = "1000";
-
-        document.body.appendChild(successDiv);
-        setTimeout(function() { successDiv.remove(); }, 1000);
-    }
-    else {
-        const userRef = ref(db, 'user/' + username);
-        get(userRef).then((snapshot) => {
-            if (snapshot.exists()) {
-                const userData = snapshot.val();
-                if (userData.username === username && userData.password === password) {
-                    const successDiv = document.createElement("div");
-                    successDiv.textContent = "Logging in ...";
-                    successDiv.style.position = "fixed";
-                    successDiv.style.top = "10px";
-                    successDiv.style.left = "50%";
-                    successDiv.style.transform = "translateX(-50%)";
-                    successDiv.style.padding = "10px 20px";
-                    successDiv.style.backgroundColor = "orange";
-                    successDiv.style.color = "white";
-                    successDiv.style.borderRadius = "5px";
-                    successDiv.style.fontSize = "16px";
-                    successDiv.style.zIndex = "1000";
-    
-                    document.body.appendChild(successDiv);
-                    setTimeout(function() { successDiv.remove(); }, 350);
-                    setTimeout(() => {
-                        window.location.href = "index.html";
-                    }, 500);
-                } else {
-                    const successDiv = document.createElement("div");
-                    successDiv.textContent = "Wrong Username or Password.";
-                    successDiv.style.position = "fixed";
-                    successDiv.style.top = "10px";
-                    successDiv.style.left = "50%";
-                    successDiv.style.transform = "translateX(-50%)";
-                    successDiv.style.padding = "10px 20px";
-                    successDiv.style.backgroundColor = "red";
-                    successDiv.style.color = "white";
-                    successDiv.style.borderRadius = "5px";
-                    successDiv.style.fontSize = "16px";
-                    successDiv.style.zIndex = "1000";
-    
-                    document.body.appendChild(successDiv);
-                    setTimeout(function() { successDiv.remove(); }, 1000);
-                }
-            } else {
-                alert("User not found.");
-            }
-        }).catch((error) => {
-            console.error("Error checking login credentials: ", error);
-        });
-    }
-});
-
     </script>
-    <script src="/Project/assets/js/login.js"></script>
+    <script src="/assets/js/login.js"></script>
 </body>
 </html>
