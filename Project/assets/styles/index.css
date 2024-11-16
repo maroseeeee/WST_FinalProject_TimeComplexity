@@ -103,33 +103,109 @@ p {
     font-size: 25px;
 }
 
+@media (max-width: 1024px) {
+    #cover {
+        padding-top: 8vh;
+        min-height: 120vh;
+    }
 
-@media only screen and (max-width: 850px) {
-    #header {
-        font-size: 10vw;
-        margin-right: 10%;
+    #description-box {
+        padding-right: 5vw;
+        padding-left: 5vw;
+        font-size: 20px;
+    }
+
+    #description-box button {
+        width: 140px;
+        height: 50px;
+        font-size: 22px;
+    }
+
+    .footer-container {
+        gap: 3rem;
+    }
+
+    .footer-title {
+        font-size: 22px;
     }
 }
 
-@media only screen and (min-height: 1081px) {
+
+@media (max-width: 768px) {
     #cover {
+        padding-top: 10vh;
         min-height: 100vh;
     }
-}
 
-@media only screen and (max-width: 700px) {
     #description-box {
-        font-size: 16px;
+        padding-right: 10vw;
+        padding-left: 10vw;
+        font-size: 18px;
+    }
+
+    #description-box button {
+        width: 130px;
+        height: 45px;
+        font-size: 20px;
+    }
+
+    .footer-container {
+        gap: 2rem;
+        width: 80%;
+    }
+
+    .footer-title {
+        font-size: 20px;
+    }
+}
+@media only screen and (max-width: 820px) {
+    .footer {
+        font-size: 17px;
+    }
+
+    .footer-title {
+        font-size: 20px;
+    }
+
+    .footer-content:first-child {
+        margin-left: 30px !important;
+    }
+}
+@media only screen and (min-height: 1081px) {
+    #cover {
+        min-height: 90vh;
     }
 }
 
-@media only screen and (max-width: 500px) {
-    .sort-button {
-        width: 120px;
-        font-size: 16px;
-    }
-
-    #description-box {
+@media (max-width: 480px) {
+    body {
         font-size: 14px;
+    }
+
+    #cover {
+        padding-top: 12vh;
+        min-height: 90vh;
+    }
+
+    #description-box {
+        padding-right: 12vw;
+        padding-left: 12vw;
+        font-size: 16px;
+    }
+
+    #description-box button {
+        width: 120px;
+        height: 40px;
+        font-size: 18px;
+    }
+
+    .footer-container {
+        flex-direction: column;
+        gap: 1rem;
+        width: 90%;
+    }
+
+    .footer-title {
+        font-size: 18px;
     }
 }
