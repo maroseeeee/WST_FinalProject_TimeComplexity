@@ -306,3 +306,53 @@ body {
 .container.active .toggle-right {
   transform: translateX(200%);
 }
+
+@media (max-width: 768px) {
+  .container {
+    width: 90%;
+    min-height: 600px;
+    padding: 20px;
+  }
+
+  .container form {
+    padding: 10px;
+  }
+
+  .input-box input {
+    padding: 10px 20px;
+  }
+
+  .container button {
+    padding: 10px 30px;
+  }
+
+  .user-remember {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  h1 {
+    font-size: 2rem;
+    margin: 15px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    width: 100%;
+    padding: 10px;
+  }
+
+  .container button {
+    padding: 8px 20px;
+    font-size: 14px;
+  }
+
+  .input-box input {
+    padding: 8px 15px;
+    font-size: 14px;
+  }
+  h1 {
+    font-size: 1.5rem;
+    margin: 10px 0;
+  }
+}
