@@ -37,15 +37,10 @@ function loadNavbar() {
                 window.location.href = '/Project/sorts/Quick_Sort.html';
             });
 
-           
-            document.getElementById('exercises-link').addEventListener('click', function () {
-                window.location.href = '/Project/templates/exercises.html';
-            });
 
-            // comment muna, hindi naopen navbar
-            // document.getElementById('history').addEventListener('click', function () {
-            //     window.location.href = '/Project/templates/history.html';
-            // });
+            document.getElementById('history').addEventListener('click', function () {
+                window.location.href = '/Project/templates/history.html';
+            });
 
             
             document.getElementById('logout-link').addEventListener('click', function () {
