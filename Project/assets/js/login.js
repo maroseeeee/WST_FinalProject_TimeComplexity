@@ -3,6 +3,8 @@ const signupbtn = document.getElementById("signup");
 const loginbtn = document.getElementById("login");
 const forgotPasswordLink = document.getElementById("forgot-password-link");
 const backToLogin = document.getElementById("back-to-login");
+const resetPasswordLink = document.getElementById("reset-password-link");
+const resetBackToLogin = document.getElementById("reset-back-to-login");
 const signUpForm = document.querySelector('.sign-up form');
 const loginForm = document.querySelector('.login form');
 const backButton = document.getElementById("back-button");
@@ -40,6 +42,19 @@ backToLogin.addEventListener("click", (e) => {
     e.preventDefault();
     container.classList.remove("forgot-password-active");
 });
+
+resetPasswordLink.addEventListener("click", (e) => {
+    e.preventDefault();
+    container.classList.add("reset-password-active");
+    
+});
+
+
+resetBackToLogin.addEventListener("click", (e) => {
+    e.preventDefault();
+    container.classList.remove("reset-password-active"); 
+    container.classList.remove("forgot-password-active"); 
+})
 
 signUpForm.addEventListener("submit", (event) => {
     event.preventDefault();
