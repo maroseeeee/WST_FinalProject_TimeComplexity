@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sort Visualizer - Selection Sort</title>
+    <link rel="stylesheet" href="/assets/styles/SortInfo.css">
+</head>
+<body>
+    <div id="sort-cover">
+        <div class="info-parent">
+            <div class="sort-description">
+                <h2>SELECTION SORT</h2>
+                <br>
+                Selection Sort is a simple, comparison-based sorting algorithm that sorts an array or list by repeatedly finding the minimum
+                (or maximum, depending on order) element from the unsorted portion and moving it to the beginning (or end) of the list.           
+            </div>
+            <div class="table-box">
+                <h2>COMPLEXITY</h2>
+                <table class="sort-table">
+                    <tr>
+                        <th>Average Complexity</th>
+                        <td>O(n<sup>2</sup>)</td>
+                    </tr>
+                    <tr>
+                        <th>Best Case</th>
+                        <td>O(n<sup>2</sup>)</td>
+                    </tr>
+                    <tr>
+                        <th>Worst Case</th>
+                        <td>O(n<sup>2</sup>)</td>
+                    </tr>
+                </table>
+                <a href="/sort" class="start-button">Start sorting!</a>
+            </div>
+            <div class="step-process">
+                <h3>Step-by-Step Process</h3>
+                <p><strong>Step 1:</strong> We start with an unsorted array.</p>
+                <p><code>[7, 12, 9, 11, 3]</code></p>
+                <p><strong>Step 2:</strong> Go through the array, one value at a time. Which value is the lowest? 3, right?</p>
+                <p><code>[7, 12, 9, 11, 3]</code></p>
+                <p><strong>Step 3:</strong> Move the lowest value 3 to the front of the array.</p>
+                <p><code>[3, 7, 12, 9, 11]</code></p>
+                <p><strong>Step 4:</strong> Look through the rest of the values, starting with 7. 7 is the lowest value, and already at the front of the array, so we don't need to move it.</p>
+                <p><code>[3, 7, 12, 9, 11]</code></p>
+                <p><strong>Step 5:</strong> Look through the rest of the array: 12, 9, and 11. 9 is the lowest value.</p>
+                <p><code>[3, 7, 12, 9, 11]</code></p>
+                <p><strong>Step 6:</strong> Move 9 to the front.</p>
+                <p><code>[3, 7, 9, 12, 11]</code></p>
+                <p><strong>Step 7:</strong> Looking at 12 and 11, 11 is the lowest.</p>
+                <p><code>[3, 7, 9, 12, 11]</code></p>
+                <p><strong>Step 8:</strong> Move it to the front.</p>
+                <p><code>[3, 7, 9, 11, 12]</code></p>
+                <p><strong>Finally, the array is sorted:</strong></p>
+                <p><code>[3, 7, 9, 11, 12]</code></p>
+            </div>
+        </div>
+    </div>
+    <div id="navbar-placeholder"></div>
+    <script src="/base.js"></script>
+    <script>
+        loadNavbar();
+    </script>
+</body>
+</html>
