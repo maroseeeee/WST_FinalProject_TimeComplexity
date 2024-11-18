@@ -161,6 +161,7 @@
                 const email = snapshot.val().email;
     
                 await signInWithEmailAndPassword(auth, email, password);
+                localStorage.setItem("username", username);
                 showAlert("Login successful!", "green");
                 setTimeout(() => {
                     window.location.href = "index.html";
@@ -205,6 +206,6 @@
             }, 2000);
         }
     </script>
-    <script src="/assets/js/login.js"></script>
+    <script src="/Project/assets/js/login.js"></script>
 </body>
 </html>

@@ -69,6 +69,90 @@
             loadNavbar();
         </script>
         <script src="/Project/assets/js/sort.js"></script>
+        
+        <script type="module">
+            import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
+            import { getDatabase, ref, get, set, update, push } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-database.js";
+        
+            const firebaseConfig = {
+              apiKey: "AIzaSyDVvkfslAMz95HfF0-5EIvq7ZZNmyIlsrM",
+              authDomain: "algosortit.firebaseapp.com",
+              databaseURL: "https://algosortit-default-rtdb.firebaseio.com",
+              projectId: "algosortit",
+              storageBucket: "algosortit.firebasestorage.app",
+              messagingSenderId: "1029666460693",
+              appId: "1:1029666460693:web:5161c3ac023a2c89eeea1c"
+            };
+        
+            const app = initializeApp(firebaseConfig);
+            const database = getDatabase(app);
+        
+            document.getElementById("submit").addEventListener('click', async function (e) {
+                e.preventDefault();
+                const userInput = document.getElementById("input-data").value;
+                const username = localStorage.getItem("username");
+                
+                try {
+                    const usernameRef = ref(database, `usernames/${username}`);
+                    const snapshot = await get(usernameRef);
+
+                    if (snapshot.exists()) {
+                        const userData = snapshot.val();
+                        
+                        const currentDate = new Date().toISOString().split('T')[0]; // Key for Inputs
+                        const currentTime = new Date().toLocaleTimeString('en-US', { hour12: false }); // Key for date
+                        
+                        if (userData.input) {
+                            // If input exists, check if the date exists
+                            const dateRef = ref(database, `usernames/${username}/input/${currentDate}`);
+                            const dateSnapshot = await get(dateRef);
+
+                            if (dateSnapshot.exists()) {
+                                // If the date exists, add the input under the time key
+                                const inputRef = ref(database, `usernames/${username}/input/${currentDate}/${currentTime}`);
+                                set(inputRef, userInput)
+                                    .then(() => {
+                                        console.log("Value added under date and time!");
+                                    })
+                                    .catch((error) => {
+                                        console.error("Error adding value:", error);
+                                    });
+                            } else {
+                                // If the date doesn't exist, create the date and add the input
+                                const updates = {};
+                                updates[`usernames/${username}/input/${currentDate}`] = {
+                                    [currentTime]: userInput
+                                };
+                                update(ref(database), updates)
+                                    .then(() => {
+                                        console.log("Date created and value added under time!");
+                                    })
+                                    .catch((error) => {
+                                        console.error("Error adding value:", error);
+                                    });
+                            }
+                        } else {
+                            // If input doesn't exist, create it
+                            const updates = {};
+                            updates[`usernames/${username}/input/${currentDate}`] = {
+                                [currentTime]: userInput
+                            };
+                            update(ref(database), updates)
+                                .then(() => {
+                                    console.log("Input created with date and time as keys!");
+                                })
+                                .catch((error) => {
+                                    console.error("Error creating input:", error);
+                                });
+                        }
+                    }
+                } 
+                catch (error) {
+                    console.error("Error accessing the database:", error);
+                }
+            });
+
+        </script>
     </main>
 </body>
 </html>

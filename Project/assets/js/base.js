@@ -44,6 +44,7 @@ function loadNavbar() {
 
             
             document.getElementById('logout-link').addEventListener('click', function () {
+                localStorage.removeItem("username");
                 window.location.href = '/Project/templates/home.html';
             });
 

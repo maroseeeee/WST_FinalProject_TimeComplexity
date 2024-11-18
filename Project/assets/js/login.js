@@ -47,9 +47,7 @@ backToLogin.addEventListener("click", (e) => {
 resetPasswordLink.addEventListener("click", (e) => {
     e.preventDefault();
     container.classList.add("reset-password-active");
-    
 });
-
 
 resetBackToLogin.addEventListener("click", (e) => {
     e.preventDefault();
