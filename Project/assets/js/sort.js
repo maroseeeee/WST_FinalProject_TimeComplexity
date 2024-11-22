@@ -114,8 +114,13 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     pauseButton.addEventListener("click", () => {
-        isPaused = !isPaused;
-        startButton.disabled = true;
+        if (isSortInProgress === false) {
+            return;
+        }
+        if (isSortInProgress === true) {
+            isPaused = !isPaused;
+            startButton.disabled = true;
+        }
     });
 
     stopButton.addEventListener("click", () => {
@@ -176,9 +181,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 
             }
            
-            bars[bars.length - i - 1].style.backgroundColor = "#6E605F"; 
+            bars[bars.length - i - 1].style.backgroundColor = "green"; 
         }
-
+        
+        bars[0].style.backgroundColor = "green";
+        
         startButton.disabled = false; 
         isSortingInProgress = false;
     }
@@ -231,10 +238,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 bars[minOrMaxIndex].textContent = originalHeights[minOrMaxIndex];
             }
             
-            bars[i].style.backgroundColor = "#6E605F";
+            bars[i].style.backgroundColor = "green";
         }
     
-        bars[bars.length - 1].style.backgroundColor = "#6E605F";
+        bars[bars.length - 1].style.backgroundColor = "green";
 
         startButton.disabled = false; 
         isSortingInProgress = false;
@@ -286,7 +293,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     
         for (let k = 0; k < bars.length; k++) {
-            bars[k].style.backgroundColor = "#6E605F";
+            bars[k].style.backgroundColor = "green";
         }
 
         startButton.disabled = false; 
@@ -374,6 +381,10 @@ document.addEventListener("DOMContentLoaded", () => {
     
         await iterativeMergeSort(originalHeights);
     
+        for (let i = 0; i < bars.length; i++) {
+            bars[i].style.backgroundColor = "green";
+        }
+
         startButton.disabled = false; 
         isSortingInProgress = false; 
     }
@@ -457,15 +468,23 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     
         await iterativeQuickSort(originalHeights);
-    
+        
+        for (let i = 0; i < bars.length; i++) {
+            bars[i].style.backgroundColor = "green";
+        }
+
         startButton.disabled = false; 
         isSortingInProgress = false;
     }    
 
     randomizeButton.addEventListener("click", () => {
         isStopped = true;
+        isSortInProgress = false;
         generateBars(arraySizeInput.value)
         startButton.disabled = false;
+        for (let i = 0; i < bars.length; i++) {
+            bars[i].style.backgroundColor = "";
+        }
     });
 
     startButton.addEventListener("click", () => {

@@ -89,9 +89,13 @@
         
             document.getElementById("submit").addEventListener('click', async function (e) {
                 e.preventDefault();
-                const userInput = document.getElementById("input-data").value;
+                const userInput = document.getElementById("input-data").value.trim();
                 const username = localStorage.getItem("username");
                 
+                if (userInput === "") {
+                    return;
+                }
+
                 try {
                     const usernameRef = ref(database, `usernames/${username}`);
                     const snapshot = await get(usernameRef);
