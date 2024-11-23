@@ -76,5 +76,7 @@ ______________________________________________________________________
 <h4> The following individuals will be working on this project:</h4>
 
 ELOPRE, JAKE MAXIM O.
+
 GENIL, GEMMA ROSE L.
+
 MONTOYA, RAM GREGGOR 
