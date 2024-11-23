@@ -51,16 +51,20 @@ ______________________________________________________________________
 ______________________________________________________________________
 
 <h3 id="usage"><b>Usage</b></h3>
+
 1. Launch the web application in your browser.
 
 2. Select a sorting algorithm from the provided list.
    
 3. Configure input parameters such as:
+   
     *Array size
+   
     *Visualization speed
-4. Start the visualization to observe the algorithm in action.
+   
+5. Start the visualization to observe the algorithm in action.
   
-5. Review the provided details about the algorithm's performance and characteristics.
+6. Review the provided details about the algorithm's performance and characteristics.
 ______________________________________________________________________
 
 <h3 id="technologies-used"<b>Technologies Used</b></h3>
