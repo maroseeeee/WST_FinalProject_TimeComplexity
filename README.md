@@ -17,24 +17,26 @@ The Sorting Algorithm Visualizer is a web application designed to provide users 
 
 <h3 id="objectives"><b>🔗 Objectives</b></h3>
 <h4> The objectives of this project are:</h4>
+<details>
+  🔴 Visualization of Sorting Algorithms: Display the operations of popular sorting algorithms in real-time, illustrating how they manipulate data during execution.
+  🔵 Educational Aid: Enhance understanding of sorting techniques by showcasing their mechanics, strengths, and weaknesses in a visually intuitive manner.
+  🟣 Practical Insights: Help users choose the most appropriate sorting algorithm based on the dataset or problem requirements by comparing the performance of different algorithms.
 
-🔴 Visualization of Sorting Algorithms: Display the operations of popular sorting algorithms in real-time, illustrating how they manipulate data during execution.
-🔵 Educational Aid: Enhance understanding of sorting techniques by showcasing their mechanics, strengths, and weaknesses in a visually intuitive manner.
-🟣 Practical Insights: Help users choose the most appropriate sorting algorithm based on the dataset or problem requirements by comparing the performance of different algorithms.
+</details>
 
 <h3 id="key-features"><b>🔑 Key Features</b></h3>
 <h4> The following are the key features of the project:<h4>
- 
-🟡 Interactive UI to choose and compare different sorting algorithms.
-🟢 Step-by-step animations for popular sorting algorithms like:
-   *Bubble Sort
-   *Quick Sort
-   *Merge Sort
-   *Insertion Sort
-   *Selection Sort
-🟠 Adjustable input size and speed of visualization for custom scenarios.
-🔵 Insights into time complexity, space complexity, and real-world applications for each algorithm.
-
+ <details>
+  🟡 Interactive UI to choose and compare different sorting algorithms.
+  🟢 Step-by-step animations for popular sorting algorithms like:
+     *Bubble Sort
+     *Quick Sort
+     *Merge Sort
+     *Insertion Sort
+     *Selection Sort
+  🟠 Adjustable input size and speed of visualization for custom scenarios.
+  🔵 Insights into time complexity, space complexity, and real-world applications for each algorithm.
+</details>
 Usage
 1. Launch the web application in your browser.
 2. Select a sorting algorithm from the provided list.
@@ -49,3 +51,10 @@ Technologies Used
 *Backend (if applicable): Node.js
 *APIs/Frameworks: Firebase
 *Security Tools: HTTPS, user authentication, encryption libraries
+
+<h3 id="team"><b>👥 Team</b></h3>
+<h4> The following individuals will be working on this project:</h4>
+
+ELOPRE, JAKE MAXIM O.
+GENIL, GEMMA ROSE L.
+MONTOYA, RAM GREGGOR 
