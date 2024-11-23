@@ -50,7 +50,7 @@ ______________________________________________________________________
 </details>
 ______________________________________________________________________
 
-Usage
+<h3 id="usage"><b>Usage</b></h3>
 1. Launch the web application in your browser.
 
 2. Select a sorting algorithm from the provided list.
@@ -63,7 +63,8 @@ Usage
 5. Review the provided details about the algorithm's performance and characteristics.
 ______________________________________________________________________
 
-Technologies Used
+<h3 id="technologies-used"<b>Technologies Used</b></h3>
+
 *Frontend: HTML, CSS, JavaScript 
 
 *Backend (if applicable): Node.js
