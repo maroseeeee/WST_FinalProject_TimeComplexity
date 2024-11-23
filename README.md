@@ -1,4 +1,5 @@
 AlgoSortIt:Sorting Algorithm Visualizer
+
 Overview
 The Sorting Algorithm Visualizer is a web application designed to provide users with an interactive way to visualize and understand various sorting algorithms. By visually representing the process of sorting, this tool helps users grasp how these algorithms function step-by-step and identify their characteristics. It serves as an educational aid, enabling learners and developers to determine the most suitable sorting algorithm for specific scenarios.
 
