@@ -34,6 +34,7 @@ ______________________________________________________________________
   🟡 Interactive UI to choose and compare different sorting algorithms.
    
   🟢 Step-by-step animations for popular sorting algorithms like:
+  
      *Bubble Sort
      
      *Quick Sort
