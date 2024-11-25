@@ -15,8 +15,8 @@ body {
 }
 
 .sort-button {
-    background-image: linear-gradient(15deg, #13547a 0%, #80d0c7 100%);
-    color: white;
+    background: linear-gradient(0deg, rgba(235, 197, 189, 1) 0%, rgba(224, 188, 204, 1) 65%);
+    color: black;
     border: none;
     border-radius: 35px;
     padding: 10px 10px; 
@@ -34,10 +34,7 @@ body {
     min-height: 100vh;
     display: block;
     overflow: auto;
-    background: linear-gradient(0deg, 
-        rgba(224, 188, 204, 1) 0%,   
-        rgba(235, 197, 189, 1) 65%    
-    );
+   
     word-wrap: normal;
 }
 

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sort Visualizer - Quick Sort</title>
     <link rel="stylesheet" href="/assets/styles/SortInfo.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
 </head>
 <body>
     <div id="sort-cover">
@@ -33,6 +34,7 @@
                 </table>
                 <a href="/sort" class="start-button">Start sorting!</a>
             </div>
+            <div id="process-container" data-aos="fade-right" data-aos-delay="250" data-aos-easing="ease-in-out">
             <div class="step-process">
                 <h3>Step-by-Step Process</h3>
                 <p><strong>Step 1:</strong> We start with an unsorted array.</p>
@@ -55,10 +57,13 @@
                 <p><code>[3, 7, 9, 11, 12]</code></p>
             </div>
         </div>
+        </div>
     </div>
     <div id="navbar-placeholder"></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script src="/base.js"></script>
     <script>
+         AOS.init();
         loadNavbar();
     </script>
 </body>

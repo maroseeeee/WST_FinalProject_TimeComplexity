@@ -2,7 +2,7 @@
 
 #sort-cover {
     position: relative;
-    background: linear-gradient(0deg, rgba(224, 188, 204, 1) 0%, rgba(235, 197, 189, 1) 65%);
+   
     min-height: 100vh;
     width: 100%;
     display: block;
@@ -64,8 +64,9 @@
 }
 
 .step-process {
-    margin-left: 60px;
+    margin: 30px; 
     text-align: justify;
+    
 }
 
 .step-process p {
@@ -86,6 +87,19 @@
 
 .start-button:hover {
     background-color: #5B4A45;
+}
+
+#process-container {
+    font-size: 16px;
+    margin-top: 50px;
+    margin-left: 60px;
+    border-radius: 10px;
+    position: relative;
+    background: linear-gradient(0deg, rgba(235, 197, 189, 1) 0%, rgba(224, 188, 204, 1) 65%);
+    width: 850px; 
+    display: inline-block;
+    border: 2px solid whitesmoke;
+    min-height: 70vh;
 }
 
 

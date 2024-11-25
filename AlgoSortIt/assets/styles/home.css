@@ -5,6 +5,7 @@ body, html {
     padding: 0;
     overflow-x: hidden;
     font-family: "Nunito", serif;
+   
 }
 
 .navbar {
@@ -73,20 +74,19 @@ body, html {
     font-size: 2.5rem;
     font-weight: bold;
     margin: 0;
-    color: #333;
+    color: black;
     text-align: center;
 }
 
 #content p {
     font-size: 1.2rem;
-    color: #555;
+    color: black;
     margin-top: 10px; 
     text-align: left;
     max-width: 600px;
     line-height: 1.6; 
 }
 
-/* Media Queries for Responsiveness */
 
 @media (max-width: 1024px) {
     .navbar {

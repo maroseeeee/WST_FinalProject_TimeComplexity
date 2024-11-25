@@ -63,7 +63,7 @@ loginForm.addEventListener("submit", (event) => {
 
     if (username && password) {
         setTimeout(() => {
-            window.location.href = "/index";
+            window.location.href = "/sort";
         }, 500);
     } else {
         alert("Please fill in both fields.");

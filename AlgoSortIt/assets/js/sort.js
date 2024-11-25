@@ -22,13 +22,16 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function generateBars(num = 20) {
-        barsContainer.selectAll("*").remove();  
+        const maxBars = 50; 
+        if (num > maxBars) num = maxBars; 
+    
+        barsContainer.selectAll("*").remove(); 
         bars = [];
         originalHeights = [];
-        const barWidth = Math.floor((barsContainer.node().clientWidth / num) - 5);
-
+        const barWidth = Math.floor((barsContainer.node().clientWidth / num) - 5); 
+    
         for (let i = 0; i < num; i++) {
-            const barHeight = Math.floor(Math.random() * 200) + 10;
+            const barHeight = Math.floor(Math.random() * 200) + 10; 
             originalHeights.push(barHeight);
         }
 
@@ -91,8 +94,13 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     pauseButton.addEventListener("click", () => {
-        isPaused = !isPaused;
-        startButton.disabled = true;
+        if (isSortInProgress === false) {
+            return;
+        }
+        if (isSortInProgress === true) {
+            isPaused = !isPaused;
+            startButton.disabled = true;
+        }
     });
 
     stopButton.addEventListener("click", () => {
@@ -143,7 +151,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             }
 
-            bars[bars.length - i - 1].style("background-color", "#6E605F");
+            bars[bars.length - i - 1].style.backgroundColor = "green";
         }
 
         startButton.disabled = false;
@@ -165,7 +173,7 @@ document.addEventListener("DOMContentLoaded", () => {
             bars[i].style("background-color", "red");
     
             for (let j = i + 1; j < bars.length; j++) {
-                bars[j].style("background-color", "orange");
+                bars[j].style("background-color", "green");
                 
                 if (isStopped) {
                     bars[i].style("background-color", "");
@@ -201,7 +209,7 @@ document.addEventListener("DOMContentLoaded", () => {
             bars[i].style("background-color", "#6E605F");
         }
     
-        bars[bars.length - 1].style("background-color", "#6E605F");
+        bars[bars.length - 1].style("background-color", "green");
 
         startButton.disabled = false; 
         isSortInProgress = false;
@@ -225,7 +233,7 @@ document.addEventListener("DOMContentLoaded", () => {
     
                 originalHeights[j] = originalHeights[j - 1];
                 bars[j].style("height", `${originalHeights[j] * heightScalingFactor}px`).text(originalHeights[j]);
-                bars[j].style("background-color", "orange");
+                bars[j].style("background-color", "green");
     
                 await new Promise(resolve => setTimeout(resolve, delay));
 
@@ -324,6 +332,10 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     
         await iterativeMergeSort(originalHeights);
+
+        for (let i = 0; i < bars.length; i++) {
+            bars[i].style.backgroundColor = "green";
+        }
     
         startButton.disabled = false;
         isSortInProgress = false;
@@ -349,7 +361,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     return;
                 }
     
-                bars[j].style("background-color", "orange");
+                bars[j].style("background-color", "green");
                 bars[high].style("background-color", "red");
     
                 await new Promise(resolve => setTimeout(resolve, delay));
@@ -407,6 +419,9 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     
         await iterativeQuickSort(originalHeights);
+        for (let i = 0; i < bars.length; i++) {
+            bars[i].style.backgroundColor = "green";
+        }
     
         startButton.disabled = false;
         isSortInProgress = false;
@@ -417,8 +432,12 @@ document.addEventListener("DOMContentLoaded", () => {
     
     randomizeButton.addEventListener("click", () => {
         isStopped = true;
+        isSortInProgress = false;
         generateBars(arraySizeInput.value)
         startButton.disabled = false;
+        for (let i = 0; i < bars.length; i++) {
+            bars[i].style.backgroundColor = "";
+        }
     });
 
     startButton.addEventListener("click", () => {

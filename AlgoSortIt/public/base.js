@@ -9,12 +9,12 @@ function loadNavbar() {
             const slider = document.querySelector('.sidebar');
 
             document.getElementById('navbar-title').addEventListener('click', function () {
-                window.location.href = '/index';
+                window.location.href = '/sort';
             });
 
           
             document.getElementById('home-link').addEventListener('click', function () {
-                window.location.href = '/index';
+                window.location.href = '/sort';
             });
 
             document.getElementById('bubble-sort').addEventListener('click', function () {
@@ -44,6 +44,7 @@ function loadNavbar() {
 
             
             document.getElementById('logout-link').addEventListener('click', function () {
+                localStorage.removeItem("username");
                 window.location.href = '/home';
             });
 

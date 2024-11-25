@@ -140,7 +140,7 @@ header {
 
 .logout-btn {
     display: inline-block;
-    background-image: linear-gradient(to top, #a18cd1 0%, #fbc2eb 100%);
+    background: linear-gradient(0deg, rgba(235, 197, 189, 1) 0%, rgba(224, 188, 204, 1) 65%);
     color: white;
     padding: 10px 20px;
     border-radius: 5px;
@@ -148,10 +148,10 @@ header {
     font-weight: bold;
     text-align: center;
     width: 100%;
-    margin-top: 8rem;
+    margin-top: 25rem;
 }
 
 .logout-btn:hover {
-    background-image: linear-gradient(to bottom, #a18cd1 0%, #fbc2eb 100%);
+    background: linear-gradient(0deg, rgba(224, 188, 204, 1) 0%, rgba(235, 197, 189, 1) 65%);
 }
 

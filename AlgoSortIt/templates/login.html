@@ -161,9 +161,10 @@
                 const email = snapshot.val().email;
     
                 await signInWithEmailAndPassword(auth, email, password);
+                localStorage.setItem("username", username);
                 showAlert("Login successful!", "green");
                 setTimeout(() => {
-                    window.location.href = "/index";
+                    window.location.href = "/sort";
                 }, 1000);
             } catch (error) {
                 showAlert(`Error: ${error.message}`, "red");
