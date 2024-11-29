@@ -10,7 +10,7 @@
 }
 
 body {
-    background-color: whitesmoke;
+    background-color: white;
     overflow-x: hidden;
 }
 
@@ -30,7 +30,7 @@ header {
     top: 0;
     left: 0;
     z-index: 1;
-    background-image: linear-gradient(to top, #fad0c4 0%, #ffd1ff 100%);
+    background: white;
 }
 
 .navbar-element {
@@ -40,8 +40,8 @@ header {
 }
 
 .navbar-title {
-    color: black;
-    font-size: 20px;
+    color: #16425b;
+    font-size: 30px;
     text-transform: capitalize;
     cursor: pointer; 
 }
@@ -59,7 +59,8 @@ header {
 }
 
 .sidebar {
-    background-color: gainsboro;
+    background: #16425b;
+    border-radius: 0 20px 20px 0;
     position: fixed; 
     top: 0;
     left: -300px; 
@@ -84,9 +85,10 @@ header {
 
 .sidenav-element {
     padding: 8px 8px 15px 70px;
+    margin-top: 20px;
     text-decoration: none;
     font-size: 25px;
-    color: #818181;
+    color: #D9DCD6;
     display: flex;
     align-items: center;
     transition: 0.1s;
@@ -98,13 +100,14 @@ header {
 
 .sidenav-element:hover {
     color: #f1f1f1;
-    background-color: #818181;
+    border-radius: 10px;
+    background-color: #3A7CA5;
 }
 
 .sidenav-title {
     text-decoration: none;
     padding: 8px 8px 15px 25px;
-    color: #818181;
+    color: #D9DCD6;
     display: block;
     transition: 0.1s;
     width: 100%; 
@@ -124,7 +127,8 @@ header {
 }
 .info-sidebar a:hover {
     color: #f1f1f1; 
-    background-color: #818181;
+    border-radius: 10px;
+    background-color: #3A7CA5;
 }
 
 .info-sidebar i{
@@ -139,8 +143,9 @@ header {
 }
 
 .logout-btn {
+    cursor: pointer;
     display: inline-block;
-    background: linear-gradient(0deg, rgba(235, 197, 189, 1) 0%, rgba(224, 188, 204, 1) 65%);
+    background: #3A7CA5;
     color: white;
     padding: 10px 20px;
     border-radius: 5px;
@@ -148,10 +153,10 @@ header {
     font-weight: bold;
     text-align: center;
     width: 100%;
-    margin-top: 25rem;
+    margin-top: 300px;
 }
 
 .logout-btn:hover {
-    background: linear-gradient(0deg, rgba(224, 188, 204, 1) 0%, rgba(235, 197, 189, 1) 65%);
+    background: #3A7CA5;
 }
 

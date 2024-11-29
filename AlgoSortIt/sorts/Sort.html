@@ -11,6 +11,11 @@
 </head>
 <body>
     <main class="main">
+        <div class="dashboard">
+            <h2>Welcome back <span id="user-name"></span></h2>
+        </div>
+        
+   
         <div class="controls">
             <div class="control-item">
                 <div class="label-container">
@@ -36,7 +41,11 @@
                     </div>
                     <label for="array-size">Array Size</label>
                 </div>
-                <input type="number" id="array-size" value="20" min="1" max="50">
+                <input type="range" id="array-size" value="20" min="5" max="50" step="5" oninput="sliderChange()">
+                <div id="elements-text">   
+                    Elements : 
+                <span id="array-size-value">20</span>
+                </div>
             </div>
             <div class="control-item">
                 <div class="label-container">
@@ -88,9 +97,11 @@
                 </label>
                 
                 <button id="submit">Submit</button>
-                <div id="submitted-data" class="submitted-data"></div>
+                <button class="compare-button" onclick="location.href='/allsort'">Compare Algorithms</button>
             </div> 
         </div>
+
+        
         <div id="navbar-placeholder"></div>
         <script src="/base.js"></script>
         <script>

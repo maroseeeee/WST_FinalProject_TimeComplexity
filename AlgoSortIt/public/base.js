@@ -21,6 +21,10 @@ function loadNavbar() {
                 window.location.href = '/bubble_sort';
             });
 
+            document.getElementById('bubble-sort2').addEventListener('click', function () {
+                window.location.href = '/bubble_sort';
+            });
+
             document.getElementById('selection-sort').addEventListener('click', function () {
                 window.location.href = '/selection_sort';
             });

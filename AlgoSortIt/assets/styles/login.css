@@ -8,7 +8,7 @@
 
 body {
   background-color: #c9d6ff;
-  background: linear-gradient(to right, #e2e2e2, #c9d6ff);
+  background: linear-gradient(to bottom, #3A7CA5, #D9DCD6);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -41,7 +41,7 @@ body {
 }
 
 .container button {
-  background-color: #333;
+  background-color: #16425B;
   color: #fff;
   padding: 10px 45px;
   border: 1px solid transparent;
@@ -59,7 +59,7 @@ body {
 }
 
 .container button:hover {
-  background-color: #555;
+  background-color: #3a7ca5;
   color: #e2e2e2;
 }
 
@@ -75,8 +75,12 @@ body {
 
 h1{
   text-align: center;
-  font-size: 2.5rem;
+  font-size: 2.0rem;
   margin: 20px 0;
+}
+
+.toggle h1, p{
+  color: #D9DCD6;
 }
 
 .container .input-box {
@@ -87,11 +91,15 @@ h1{
   position: relative;
 }
 
+#signin{
+  margin-top: 20px;
+}
+
 .input-box input {
   width: 100%;
   height: 45px;
   border-radius: 6px;
-  border: 1px solid #E0BCCC;
+  border: 1px solid #16425B;
   padding: 20px 45px 20px 20px;
 }
 
@@ -263,7 +271,7 @@ h1{
 
 .toggle {
   height: 100%;
-  background: linear-gradient(0deg, rgba(235, 197, 189, 1) 0%, rgba(224, 188, 204, 1) 65%);
+  background: linear-gradient(to bottom, #3a7ca5, #81C3D7);
   color: black;
   position: relative;
   left: -100%;
@@ -271,6 +279,11 @@ h1{
   transform: translateX(0);
   transition: all 0.6s ease-in-out;
 }
+
+#signup, #login{
+  color: #D9DCD6;
+}
+
 
 .toggle button {
   color: black;

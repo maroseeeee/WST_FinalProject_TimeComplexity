@@ -1,0 +1,240 @@
+* {
+    box-sizing: border-box;
+    border-width: 0;
+    border-style: solid;
+    border-color: #e5e7eb
+}
+
+.main{
+    padding: 10px 20px 0;
+    text-align: center;
+}
+
+.all-algo{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    margin: 30px 0 80px 10px;
+}
+
+
+.controls {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 100%;
+    max-width: 1320px;
+    margin: 60px 0 20px 30px;
+    gap: 15px;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, .1), 0px 8px 16px rgba(0, 0, 0, .1);
+    background: #D9DCD6;
+    min-height: 100px; 
+}
+
+.control-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+select,
+input[type="number"] {
+    padding: 5px;
+    font-size: 16px;
+    width: 150px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    outline: none;
+    cursor: pointer;
+}
+
+
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    margin-left: 5px; 
+}
+
+
+.tooltip .tooltip-text {
+    visibility: hidden;
+    width: 160px; 
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 5px;
+    border-radius: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%; 
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    font-size: 15px; 
+}
+
+.tooltip .tooltip-text::after {
+    content: "";
+    position: absolute;
+    top: 100%; 
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 5px;
+    border-style: solid;
+    border-color: #333 transparent transparent transparent;
+}
+
+.tooltip:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+}
+
+
+.tooltip img {
+    width: 16px;
+    height: 16px;
+    vertical-align: middle;
+}
+
+.buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.image-button {
+    border: none;
+    background: none;
+    padding: 0;
+    cursor: pointer;
+    outline: none;
+}
+
+.image-button img{
+    width: 40px;
+    height: 40px;
+    transition: transform 0.2s; 
+}
+
+
+.image-button img:hover {
+    transform: scale(1.1); 
+}
+
+
+.image-button:focus img {
+    outline: 2px solid #6E605F; 
+    border-radius: 4px; 
+}
+
+.container{
+    display: inline-block;
+    box-sizing: border-box;
+    min-width: 605px;
+    max-width: 100%;
+    height: 400px;
+    padding: 5px;
+    box-shadow: 0 0 4px var(--shadow2);
+    background: #d9dcd6;
+    border-radius: 8px;
+}
+
+.container header, .container footer{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.container h2{
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-transform: capitalize;
+}
+
+.sortcontainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    width: 100%;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.array-container{
+    position: relative;
+    padding: 25px 0 40px;
+    overflow-x: auto
+}
+
+.bars {
+    display: flex;
+    align-items: flex-end;
+    width: 100%;
+    max-width: 1000px;
+    height: 280px;
+    border-radius: 8px;
+    padding: 12px; 
+    gap: 1px;
+    box-sizing: border-box;
+    justify-content: space-between;
+}
+
+.bar {
+    background-color: #16425B;
+    flex: 1 5 calc((100% - (20 * 5px)) / 20); 
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    color: white;   
+    font-size: 12px;
+    border-radius: 4px 4px 0 0;
+    transition: height 0.3s;
+    overflow: hidden;
+    white-space: nowrap;
+    max-height: 85%;
+    min-height: 10px;
+}
+
+input[type="text"] {
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    outline: none;
+}
+
+.input-container label{
+    color: #16425B;
+    font-weight: bold;
+}
+
+.label-container label {
+    color: #16425B; 
+    font-size: 20px; 
+}
+
+button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background: #16425b;
+    color: white;
+}
+
+.button-container{
+    height: 70px;
+    margin-top: 10px;
+    margin-left: 50px;
+    border: 1px solid #333; 
+    border-radius: 5px;  
+    padding: 10px; 
+}
+

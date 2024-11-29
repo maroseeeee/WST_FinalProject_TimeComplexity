@@ -4,7 +4,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const startButton = document.getElementById("start");
     const pauseButton = document.getElementById("pause");
     const stopButton = document.getElementById("stop");
-    const arraySizeInput = document.getElementById("array-size");
+    const arraySizeSlider = document.getElementById("array-size");
+    const arraySizeValue = document.getElementById("array-size-value");
     const speedSelect = document.getElementById("speed");
     const inputDataField = document.getElementById("input-data");
     const submitButton = document.getElementById("submit");
@@ -19,6 +20,12 @@ document.addEventListener("DOMContentLoaded", () => {
     function setSpeed() {
         const speed = speedSelect.value;
         delay = speed === "Slow" ? 650 : speed === "Moderate" ? 100 : 30;
+    }
+
+    function sliderChange() {
+        const newSize = parseInt(arraySizeSlider.value);
+        arraySizeValue.textContent = newSize; 
+        generateBars(newSize); 
     }
 
     function generateBars(num = 20) {
@@ -46,12 +53,16 @@ document.addEventListener("DOMContentLoaded", () => {
             .attr("class", "bar")
             .style("height", d => `${(d / 200) * containerHeight * 0.6}px`)
             .style("width", `${barWidth}px`)
-            .style("background-color", "#6E605F")
+            .style("background-color", "#16425B")
             .text(d => d)
             .each(function(d, i) {
                 bars.push(d3.select(this));
             });
+            
     }
+   
+    sliderChange(); 
+    arraySizeSlider.addEventListener("input", sliderChange); 
 
     function generateBarsFromInput(input) {
         const heights = input.split(',').map(num => parseInt(num.trim())).filter(num => !isNaN(num));
@@ -190,7 +201,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 const height1 = originalHeights[minOrMaxIndex];
                 const height2 = originalHeights[j];
     
-                if ((order === "ascending" && height2 < height1) || (order === "descending" && height2 > height1)) {
+                if ((order === "ascending" && height2 < height1) || 
+                (order === "descending" && height2 > height1)) {
                     if (minOrMaxIndex !== i) bars[minOrMaxIndex].style("background-color", "");
                     minOrMaxIndex = j;
                     bars[minOrMaxIndex].style("background-color", "blue"); 
@@ -252,6 +264,7 @@ document.addEventListener("DOMContentLoaded", () => {
         startButton.disabled = false;
         isSortInProgress = false;
     }
+    
     async function mergeSort(order) {
         setSpeed();
         const maxOriginalHeight = Math.max(...originalHeights);
@@ -340,6 +353,7 @@ document.addEventListener("DOMContentLoaded", () => {
         startButton.disabled = false;
         isSortInProgress = false;
     }
+    
     async function quickSort(order) {
         setSpeed();
         const maxOriginalHeight = Math.max(...originalHeights);
@@ -433,7 +447,7 @@ document.addEventListener("DOMContentLoaded", () => {
     randomizeButton.addEventListener("click", () => {
         isStopped = true;
         isSortInProgress = false;
-        generateBars(arraySizeInput.value)
+        generateBars(arraySizeSlider.value)
         startButton.disabled = false;
         for (let i = 0; i < bars.length; i++) {
             bars[i].style.backgroundColor = "";
@@ -472,11 +486,12 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    generateBars(arraySizeInput.value);
+    generateBars(arraySizeSlider.value);
     
-    arraySizeInput.addEventListener("change", () => {
-        generateBars(arraySizeInput.value);
+    arraySizeSlider.addEventListener("change", () => {
+        generateBars(arraySizeSlider.value);
     });
 
     speedSelect.addEventListener("change", setSpeed);
+
 });

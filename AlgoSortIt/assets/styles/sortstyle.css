@@ -14,7 +14,7 @@ body {
     flex-direction: column;
     align-items: center;
     padding: 20px;
-    margin-top: 120px;
+    margin-top: 80px;
     box-sizing: border-box;
 }
 
@@ -23,14 +23,14 @@ body {
     flex-wrap: wrap;
     justify-content: space-around;
     width: 100%;
-    max-width: 82.5rem;
+    max-width: 1320px;
     margin-left: 30px;
     gap: 15px;
     padding: 20px;
     border-radius: 8px;
     margin-bottom: 20px;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, .1), 0px 8px 16px rgba(0, 0, 0, .1);
-    background: #EBC5BD;
+    background: #d9dcd6;
     min-height: 100px; 
 }
 
@@ -41,6 +41,31 @@ body {
     font-size: 16px;
     font-weight: 700;
 }
+
+.dashboard {
+    display: flex;
+    background: #16425B;
+    padding: 30px;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 1320px;
+    margin-left: 30px;
+    margin-bottom: 20px;
+    min-height: 150px; 
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, .1), 0px 8px 16px rgba(0, 0, 0, .1);
+    text-align: center;
+}
+
+.dashboard h2 {
+    margin-left: 20px;
+    font-size: 4.0rem;
+    color: white;
+}
+
+#user-name {
+    color: white;
+}
+
 
 select,
 input[type="number"] {
@@ -53,10 +78,28 @@ input[type="number"] {
     cursor: pointer;
 }
 
+#array-size {
+    -webkit-appearance: none;
+    appearance: none;
+    background: #16425B;
+    width: 100%;
+    margin: 10px 0;
+    height: 10px; 
+    outline: none;
+    border-radius: 50px; 
+}
+
+#array-size::-webkit-slider-thumb {
+    background-color: #007BFF;
+    border-radius: 20%;
+    cursor: pointer;
+}
+
+
 .buttons {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 25px;
 }
 
 .image-button {
@@ -68,8 +111,8 @@ input[type="number"] {
 }
 
 .image-button img{
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
     transition: transform 0.2s; 
 }
 
@@ -89,12 +132,13 @@ button {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    background: #6E605F;
     color: white;
 }
 
 .button-container{
-    border: 1px solid #333; 
+    height: 70px;
+    margin-top: 10px;
+    margin-left: 50px;
     border-radius: 5px;  
     padding: 10px; 
 }
@@ -111,7 +155,6 @@ button {
 .bars {
     display: flex;
     align-items: flex-end;
-    background: #d3d3d3;
     width: 100%;
     max-width: 1000px;
     height: 500px;
@@ -119,13 +162,13 @@ button {
     padding: 12px; 
     gap: 1px;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, .1), 0px 8px 16px rgba(0, 0, 0, .1);
-    background: #EBC5BD;
+    background: #d9dcd6;
     box-sizing: border-box;
     justify-content: space-between;
 }
 
 .bar {
-    background-color: #6E605F;
+    background-color: #16425B;
     flex: 1 5 calc((100% - (20 * 5px)) / 20); 
     display: flex;
     align-items: flex-end;
@@ -148,15 +191,29 @@ button {
     width: 100%;
     max-width: 300px;
     padding: 15px;
-    background: #d3d3d3;
     border-radius: 8px;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, .1), 0px 8px 16px rgba(0, 0, 0, .1);
-    background: #EBC5BD;
+    background: #d9dcd6;
     min-height: 100px;
+}
+.input-container label{
+    color: #16425B;
+    font-weight: bold;
+}
+
+#submit{
+    background: #16425B;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+#submit:hover{
+    background: #3a7ca5;
+
 }
 
 input[type="text"] {
-    padding: 5px;
+    padding: 8px;
     border-radius: 5px;
     border: 1px solid #ccc;
     outline: none;
@@ -177,6 +234,12 @@ input[type="text"] {
     gap: 5px; 
     margin-bottom: 5px;
 }
+
+.label-container label {
+    color: #16425B; 
+    font-size: 20px; 
+}
+
 
 .tooltip {
     position: relative;
@@ -225,6 +288,20 @@ input[type="text"] {
     width: 16px;
     height: 16px;
     vertical-align: middle;
+}
+
+.compare-button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background: #16425B;
+    color: white;
+    font-weight: bold;
+}
+
+.compare-button:hover {
+    background-color: #3a7ca5;
 }
 
 

@@ -34,6 +34,10 @@ app.get('/bubble_sort', (req, res) => {
     res.sendFile(path.join(__dirname, 'sorts', 'Bubble_Sort.html'));
 });
 
+app.get('/bubble_sort2', (req, res) => {
+    res.sendFile(path.join(__dirname, 'sorts', 'Bubble_Sort.html'));
+});
+
 app.get('/selection_sort', (req, res) => {
     res.sendFile(path.join(__dirname, 'sorts', 'Selection_Sort.html'));
 });
@@ -61,6 +65,11 @@ app.get('/home', (req, res) => {
 app.get('/sort', (req, res) => {
     res.sendFile(path.join(__dirname, 'sorts', 'Sort.html'));
 });
+
+app.get('/allsort', (req, res) => {
+    res.sendFile(path.join(__dirname, 'sorts', 'allsort.html'));
+});
+
 
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
