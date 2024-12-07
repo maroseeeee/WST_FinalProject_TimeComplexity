@@ -14,12 +14,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const speedSelect = document.getElementById("speed");
     const inputDataField = document.getElementById("input-data");
     const submitButton = document.getElementById("submit");
-    const submittedDataDiv = document.getElementById("submitted-data");
 
     bars = [];
     let originalHeights = [];
-
     let delay = 100;
+    let savedArrays = []; 
+    let currentArrayIndex = -1;
+
     const containerHeight = bubbleBarsContainer.node().clientHeight;
 
     function setSpeed() {
@@ -31,26 +32,31 @@ document.addEventListener("DOMContentLoaded", () => {
         const newSize = parseInt(arraySizeSlider.value);
         arraySizeValue.textContent = newSize;
         generateBars(newSize, [bubbleBarsContainer, selectionBarsContainer, insertionBarsContainer, mergeBarsContainer, quickBarsContainer]);
-    }
     
+    }
+    window.sliderChange = sliderChange;
+    arraySizeSlider.addEventListener('input', sliderChange);
 
     function generateBars(num = 20, containers = [bubbleBarsContainer, selectionBarsContainer, insertionBarsContainer, mergeBarsContainer, quickBarsContainer]) {
         const maxBars = 20;
         if (num > maxBars) num = maxBars;
 
-        // Generate heights only once and store them
+      
         originalHeights = [];
         for (let i = 0; i < num; i++) {
             const barHeight = Math.floor(Math.random() * 200 + 10);
             originalHeights.push(barHeight);
         }
+        savedArrays.push([...originalHeights]); 
+        currentArrayIndex = savedArrays.length - 1;
 
+       
         console.log("Original Heights: ", originalHeights);
         console.log("Container Height: ", bubbleBarsContainer.node().clientHeight);
 
-        // Clear and create bars in all containers using the same data
+       
         containers.forEach(cont => {
-            cont.selectAll("*").remove(); // Clear previous bars
+            cont.selectAll("*").remove(); 
 
             const barWidth = Math.floor(bubbleBarsContainer.node().clientWidth / num) - 5;
             const maxHeight = Math.max(...originalHeights);
@@ -73,9 +79,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
         });
     }
-
     sliderChange();
-    arraySizeSlider.addEventListener("input", sliderChange);
 
     function generateBarsFromInput(input) {
         const heights = input.split(',').map(num => parseFloat(num.trim())).filter(num => !isNaN(num));
@@ -111,16 +115,26 @@ document.addEventListener("DOMContentLoaded", () => {
         const inputData = inputDataField.value;
         if (inputData) {
             generateBarsFromInput(inputData);
-            submittedDataDiv.textContent = `Submitted Data: ${inputData}`;
-            inputDataField.value = "";
-        } else {
-            submittedDataDiv.textContent = "";
+            inputDataField.value = "";            
+            originalHeights = inputData.split(",").map(Number);        
+            savedArrays.push([...originalHeights]);
+            currentArrayIndex = savedArrays.length - 1;
         }
     });
+    
 
     let isPaused = false;
     let isStopped = false;
     let isSortInProgress = false;
+    let elapsedTime = 0;
+    let timerIntervals = {};
+    let algorithmStatus = {
+        bubble: false,
+        selection: false,
+        insertion: false,
+        merge: false,
+        quick: false
+    };
 
     startButton.addEventListener("click", async () => {
         if (isSortInProgress) {
@@ -134,13 +148,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const order = document.querySelector('input[name="order"]:checked').value;
         isSortInProgress = true;
-
+        elapsedTime = 0; 
          
         const bubbleHeights = [...originalHeights];
         const selectionHeights = [...originalHeights];
         const insertionHeights = [...originalHeights];
         const mergeHeights = [...originalHeights];
         const quickHeights = [...originalHeights];
+
+        timerIntervals = {}; 
 
         await Promise.all([
             bubbleSort(order, bubbleBarsContainer, bubbleHeights),
@@ -154,20 +170,70 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     pauseButton.addEventListener("click", () => {
-        if (isSortInProgress === false) {
+        if (!isSortInProgress) {
             return;
         }
-        if (isSortInProgress === true) {
-            isPaused = !isPaused;
+        if (isSortInProgress && !isPaused) {
+            isPaused = true;
+            
+            for (const key in timerIntervals) {
+                clearInterval(timerIntervals[key]);
+            }
+            startButton.disabled = false;
+        } else if (isSortInProgress && isPaused) {
+            isPaused = false;
             startButton.disabled = true;
+            
+            for (const key in timerIntervals) {
+                startTimer(key);
+            }
         }
     });
 
     stopButton.addEventListener("click", () => {
         isStopped = true;
         isPaused = false;
+        isSortInProgress = false;
+    
+     
+        for (const key in timerIntervals) {
+            clearInterval(timerIntervals[key]);
+        }
+
+        if (currentArrayIndex >= 0 && savedArrays[currentArrayIndex]) {
+            originalHeights = [...savedArrays[currentArrayIndex]];
+            generateBarsFromInput(originalHeights.join(","));
+        }
+    
+        
+        for (const key in timerIntervals) {
+            const timeElement = document.getElementById(`${key}-time`);
+            if (timeElement) {
+                timeElement.innerText = 0; 
+            }
+        }
+    
         startButton.disabled = false;
     });
+
+    function startTimer(algorithmName) {
+        const timeElement = document.getElementById(`${algorithmName}-time`);
+        const startTime = Date.now() - elapsedTime * 1000;
+    
+        timerIntervals[algorithmName] = setInterval(() => {
+            if (!isPaused) {
+                elapsedTime = Math.floor((Date.now() - startTime) / 1000);
+                timeElement.innerText = elapsedTime;
+            }
+        }, 1000);
+    }
+    function startAlgorithm(algorithmName) {
+        algorithmStatus[algorithmName] = true;
+    }
+    
+    function stopAlgorithm(algorithmName) {
+        algorithmStatus[algorithmName] = false;
+    }
 
     async function bubbleSort(order, container, heights) {
         setSpeed();
@@ -181,20 +247,16 @@ document.addEventListener("DOMContentLoaded", () => {
         const maxOriginalHeight = Math.max(...heights);
         const heightScalingFactor = (containerHeight * 0.6) / maxOriginalHeight;
     
-        const timeElement = document.getElementById("bubble-time");
-        let startTime = Date.now();
-
-        const timerInterval = setInterval(() => {
-            const elapsedTime = Math.floor((Date.now() - startTime) / 1000);
-            timeElement.innerText = elapsedTime;
-        }, 1000);
+        startAlgorithm("bubble");
+        startTimer("bubble");
         isSortInProgress = true;
     
         for (let i = 0; i < heights.length - 1; i++) {
             let swapped = false;
             for (let j = 0; j < heights.length - i - 1; j++) {
                 if (isStopped) {
-                    clearInterval(timerInterval);
+                    clearInterval(timerIntervals["bubble"]);
+                    stopAlgorithm("bubble");
                     return;
                 }
     
@@ -225,13 +287,15 @@ document.addEventListener("DOMContentLoaded", () => {
     
             if (!swapped) break;
         }
-
+        clearInterval(timerIntervals["bubble"]);
+        startButton.disabled = false;
         isSortInProgress = false;
-        clearInterval(timerInterval);
+        stopAlgorithm("bubble");
+
     }
-
-
+    
     async function selectionSort(order, container, heights) {
+        setSpeed();
         const bars = [];
         container.selectAll(".bar").each(function () {
             const bar = d3.select(this);
@@ -242,14 +306,10 @@ document.addEventListener("DOMContentLoaded", () => {
         const maxOriginalHeight = Math.max(...heights);
         const heightScalingFactor = (containerHeight * 0.6) / maxOriginalHeight;
     
-        const timeElement = document.getElementById("selection-time");
-        let startTime = Date.now();
+        startAlgorithm("selection");
+        startTimer("selection");
         isSortInProgress = true;
-    
-        const timerInterval = setInterval(() => {
-            const elapsedTime = Math.floor((Date.now() - startTime) / 1000);
-            timeElement.innerText = elapsedTime;
-        }, 1000);
+
     
         for (let i = 0; i < heights.length - 1; i++) {
     
@@ -258,12 +318,13 @@ document.addEventListener("DOMContentLoaded", () => {
             for (let j = i + 1; j < heights.length; j++) {
                 if (isStopped) {
                     isSortInProgress = false;
-                    clearInterval(timerInterval);
+                    clearInterval(timerIntervals["selection"]);
+                    stopAlgorithm("selection");
                     return;
                 }
     
-                bars[j].style("background-color", "red");
-                bars[minIndex].style("background-color", "orange");
+                bars[j].style("background-color", "green");
+                bars[minIndex].style("background-color", "red");
     
                 await new Promise(resolve => setTimeout(resolve, delay));
     
@@ -299,11 +360,14 @@ document.addEventListener("DOMContentLoaded", () => {
     
         bars[heights.length - 1].style("background-color", "#16425b");
     
-        clearInterval(timerInterval);
+        clearInterval(timerIntervals["selection"]);
+        startButton.disabled = false;
         isSortInProgress = false;
+        stopAlgorithm("selection");
     }
     
     async function insertionSort(order, container, heights) {
+        setSpeed();
         const bars = [];
         container.selectAll(".bar").each(function () {
             const bar = d3.select(this);
@@ -314,16 +378,10 @@ document.addEventListener("DOMContentLoaded", () => {
         const maxOriginalHeight = Math.max(...heights);
         const heightScalingFactor = (containerHeight * 0.6) / maxOriginalHeight;
     
-        const timeElement = document.getElementById("insertion-time");
-        let startTime = Date.now();
-       
-    
-        const timerInterval = setInterval(() => {
-            const elapsedTime = Math.floor((Date.now() - startTime) / 1000);
-            timeElement.innerText = elapsedTime;
-        }, 1000);
-
+        startAlgorithm("insertion");
+        startTimer("insertion");
         isSortInProgress = true;
+
         for (let i = 1; i < heights.length; i++) {
             let j = i;
             const heightToInsert = heights[i];
@@ -335,9 +393,11 @@ document.addEventListener("DOMContentLoaded", () => {
                  (order === "descending" && heights[j - 1] < heightToInsert))) {
 
                     if (isStopped) {
-                        clearInterval(timerInterval); // Ensure timer is cleared when stopping
-                        return; // Stop sorting if isStopped is true
+                        clearInterval(timerIntervals["insertion"]);
+                        stopAlgorithm("insertion");
+                        return; 
                     }
+                    bars[j - 1].style("background-color", "red");
     
                 heights[j] = heights[j - 1];
                 bars[j].style("height", `${heights[j] * heightScalingFactor}px`).text(heights[j]);
@@ -356,9 +416,14 @@ document.addEventListener("DOMContentLoaded", () => {
             bars[j].style("height", `${heightToInsert * heightScalingFactor}px`).text(heightToInsert);
             bars[j].style("background-color", "#16425b");
         }
-        clearInterval(timerInterval);
+        clearInterval(timerIntervals["insertion"]);
+        startButton.disabled = false;
         isSortInProgress = false;
-        
+        stopAlgorithm("insertion");
+       
+        bars.forEach(bar => {
+            bar.style("background-color", "#16425b");
+        });
     }
 
     async function mergeSort(order, container, heights) {
@@ -374,14 +439,10 @@ document.addEventListener("DOMContentLoaded", () => {
         const maxOriginalHeight = Math.max(...heights);
         const heightScalingFactor = containerHeight * 0.6 / maxOriginalHeight;
     
-        const timeElement = document.getElementById("merge-time");
-        let startTime = Date.now();
-      
-        const timerInterval = setInterval(() => {
-            const elapsedTime = Math.floor((Date.now() - startTime) / 1000);
-            timeElement.innerText = elapsedTime; // Update time
-        }, 1000);
+        startAlgorithm("merge");
+        startTimer("merge");
         isSortInProgress = true;
+    
         async function merge(arr, left, mid, right) {
             let leftArray = arr.slice(left, mid + 1);
             let rightArray = arr.slice(mid + 1, right + 1);
@@ -389,8 +450,9 @@ document.addEventListener("DOMContentLoaded", () => {
     
             while (i < leftArray.length && j < rightArray.length) {
                 if (isStopped) {
-                    bars[left + i].style("background-color", "");
+                   bars[left + i].style("background-color", "");
                     bars[mid + 1 + j].style("background-color", "");
+                    clearInterval(timerIntervals["merge"]);
                     return;
                 }
     
@@ -419,6 +481,10 @@ document.addEventListener("DOMContentLoaded", () => {
             }
     
             while (i < leftArray.length) {
+                if (isStopped) {
+                    clearInterval(timerIntervals["merge"]);
+                    return;
+                }
                 arr[k] = leftArray[i];
                 bars[k].style("height", `${arr[k] * heightScalingFactor}px`)
                     .text(arr[k]);
@@ -427,6 +493,10 @@ document.addEventListener("DOMContentLoaded", () => {
             }
     
             while (j < rightArray.length) {
+                if (isStopped) {
+                    clearInterval(timerIntervals["merge"]);
+                    return;
+                }
                 arr[k] = rightArray[j];
                 bars[k].style("height", `${arr[k] * heightScalingFactor}px`)
                     .text(arr[k]);
@@ -448,6 +518,11 @@ document.addEventListener("DOMContentLoaded", () => {
                     const mid = Math.min(leftStart + size - 1, arr.length - 1);
                     const rightEnd = Math.min(leftStart + 2 * size - 1, arr.length - 1);
     
+                    if (isStopped) {
+                        clearInterval(timerIntervals["merge"]);
+                        return;
+                    }
+    
                     await merge(arr, leftStart, mid, rightEnd);
                 }
             }
@@ -459,10 +534,13 @@ document.addEventListener("DOMContentLoaded", () => {
             bars[i].style.backgroundColor = "green";
         }
     
+        
+        clearInterval(timerIntervals["merge"]);
         startButton.disabled = false;
-        clearInterval(timerInterval);
         isSortInProgress = false;
+        stopAlgorithm("merge");
     }
+    
     
     async function quickSort(order, container, heights) {
         setSpeed();
@@ -476,15 +554,10 @@ document.addEventListener("DOMContentLoaded", () => {
         const maxOriginalHeight = Math.max(...heights);
         const heightScalingFactor = containerHeight * 0.6 / maxOriginalHeight;
   
-    
-        // Timer setup
-        const timeElement = document.getElementById("quick-time");
-        let startTime = Date.now();
-        const timerInterval = setInterval(() => {
-            const elapsedTime = Math.floor((Date.now() - startTime) / 1000);
-            timeElement.innerText = elapsedTime; // Update time
-        }, 1000);
+        startAlgorithm("quick");
+        startTimer("quick");
         isSortInProgress = true;
+
         function swap(arr, i, j) {
             const temp = arr[i];
             arr[i] = arr[j];
@@ -497,6 +570,8 @@ document.addEventListener("DOMContentLoaded", () => {
     
             for (let j = low; j < high; j++) {
                 if (isStopped) {
+                    clearInterval(timerIntervals["quick"]);
+                    stopAlgorithm("merge");
                     return;
                 }
     
@@ -561,10 +636,11 @@ document.addEventListener("DOMContentLoaded", () => {
         for (let i = 0; i < bars.length; i++) {
             bars[i].style.backgroundColor = "green";
         }
-    
+      
+        clearInterval(timerIntervals["quick"]);
         startButton.disabled = false;
-        clearInterval(timerInterval);
         isSortInProgress = false;
+        stopAlgorithm("merge");
     }
 
 
@@ -572,14 +648,23 @@ document.addEventListener("DOMContentLoaded", () => {
     randomizeButton.addEventListener("click", () => {
         isStopped = true;
         isSortInProgress = false;
+        
+        for (const key in timerIntervals) {
+            clearInterval(timerIntervals[key]);
+        }
+
+        for (const key in timerIntervals) {
+            const timeElement = document.getElementById(`${key}-time`);
+            if (timeElement) {
+                timeElement.innerText = 0; 
+            }
+        }
         const newSize = parseInt(arraySizeSlider.value);
 
         generateBars(newSize, [bubbleBarsContainer, selectionBarsContainer, insertionBarsContainer, mergeBarsContainer, quickBarsContainer]);
-    
-        // Re-enable the start button
+
         startButton.disabled = false;
-    
-        // Clear any color changes on the bars
+
         for (let i = 0; i < bars.length; i++) {
             bars[i].style.backgroundColor = "";
         }
@@ -588,11 +673,8 @@ document.addEventListener("DOMContentLoaded", () => {
    
     
 
-    generateBars(20, bubbleBarsContainer);
-    generateBars(20, selectionBarsContainer);
-    generateBars(20, insertionBarsContainer);
-    generateBars(20, mergeBarsContainer);
-    generateBars(20, quickBarsContainer);
+   generateBars(20, [bubbleBarsContainer, selectionBarsContainer, insertionBarsContainer, mergeBarsContainer, quickBarsContainer]);
+
 
     speedSelect.addEventListener("change", setSpeed);
 });

@@ -1,4 +1,4 @@
-
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
 
 body {
     margin: 0;
@@ -44,23 +44,39 @@ body {
 
 .dashboard {
     display: flex;
+    justify-content: space-between; 
+    align-items: center;
     background: #16425B;
-    padding: 30px;
+    padding: 20px;
     border-radius: 10px;
     width: 100%;
     max-width: 1320px;
-    margin-left: 30px;
-    margin-bottom: 20px;
-    min-height: 150px; 
+    margin: 0 0 20px 30px; 
+    height: 150px; 
     box-shadow: 0px 2px 4px rgba(0, 0, 0, .1), 0px 8px 16px rgba(0, 0, 0, .1);
     text-align: center;
+
 }
 
 .dashboard h2 {
-    margin-left: 20px;
+    margin: 0; 
     font-size: 4.0rem;
     color: white;
+    display: flex;
+    align-items: center; 
+    flex: 1; 
+    min-width: 250px; 
+    flex-wrap: wrap; 
 }
+
+.welcome-img {
+    width: 250px;
+    height: auto;
+
+    transform: translateY(-5px); 
+   
+}
+
 
 #user-name {
     color: white;
@@ -79,9 +95,6 @@ input[type="number"] {
 }
 
 #array-size {
-    -webkit-appearance: none;
-    appearance: none;
-    background: #16425B;
     width: 100%;
     margin: 10px 0;
     height: 10px; 
@@ -138,7 +151,7 @@ button {
 .button-container{
     height: 70px;
     margin-top: 10px;
-    margin-left: 50px;
+    margin-left: 10px;
     border-radius: 5px;  
     padding: 10px; 
 }
@@ -147,9 +160,20 @@ button {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
-    width: 110%;
     justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    margin: 0 auto;
+    padding: 15px;
+    box-sizing: border-box;
+}
+
+.container {
+    display: flex;
+    width: 100%;
+    max-width: 1000px;
     margin-left: 30px;
+    box-sizing: border-box;
 }
 
 .bars {
@@ -159,17 +183,18 @@ button {
     max-width: 1000px;
     height: 500px;
     border-radius: 8px;
-    padding: 12px; 
-    gap: 1px;
+    padding: 12px;
+    gap: 2px;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, .1), 0px 8px 16px rgba(0, 0, 0, .1);
     background: #d9dcd6;
     box-sizing: border-box;
     justify-content: space-between;
+ 
 }
 
 .bar {
     background-color: #16425B;
-    flex: 1 5 calc((100% - (20 * 5px)) / 20); 
+    flex: 1 1 calc((100% - 20px) / 20);
     display: flex;
     align-items: flex-end;
     justify-content: center;
@@ -183,6 +208,14 @@ button {
     min-height: 10px;
 }
 
+.bar-wrapper {
+    display: flex;
+    flex: 1 1 calc((100% - 20px) / 20);
+    box-sizing: border-box;
+    max-width: calc(100% / 20); 
+    overflow: hidden; 
+    margin: 0 2px; 
+}
 
 .input-container {
     display: flex;
@@ -194,7 +227,8 @@ button {
     border-radius: 8px;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, .1), 0px 8px 16px rgba(0, 0, 0, .1);
     background: #d9dcd6;
-    min-height: 100px;
+    height: 500px;
+    box-sizing: border-box; 
 }
 .input-container label{
     color: #16425B;
@@ -305,19 +339,33 @@ input[type="text"] {
 }
 
 
-@media screen and (max-width: 1200px) {
-    .controls {
+@media screen and (max-width: 1024px) {
+    .dashboard {
+        flex-direction: column;
+        align-items: center;
+        padding: 5px;
+        width: 85%;
         margin-left: 10px;
-        padding: 15px;
-        width: 45rem;
         box-sizing: border-box;
         min-height: 100px;
     }
 
-    .sortcontainer {
-        margin-left: auto;
-        margin-right: auto;
-        width: 80%; 
+    .welcome-img {
+        width: 190px; 
+    }
+
+    .controls {
+        margin-left: 10px;
+        padding: 15px;
+        width: 85%;
+        box-sizing: border-box;
+        min-height: 100px;
+    }
+
+    .sortcontainer,.container {
+    
+        margin-left: 20px;
+        width: 95%;
     }
 
     .bars {
@@ -325,47 +373,53 @@ input[type="text"] {
     }
 
     .bar {
-        width: calc((100% / 20) - 5px); 
-    }
-}
-
-@media only screen and (max-width: 1100px) {
-    .sort-container {
-        height: 50vh;
+        width: calc((100% / 20) - 5px);
     }
 }
 
 @media screen and (max-width: 968px) {
+    .dashboard {
+        padding: 5px; 
+        margin-bottom: 20px;
+    }
+
+    .dashboard h2 {
+        font-size: 2.5rem;
+        margin-bottom: 30px; 
+    }
+
+    .welcome-img {
+        width: 160px; 
+    }
+
     .controls {
+        margin-left: 10px;
         flex-direction: column;
         align-items: center;
-        width: 35rem;
-        margin-left: auto;
-        margin-right: auto;
-        min-height: 100px; 
+        width: 85%;
+        min-height: 100px;
     }
 
-    .sortcontainer {
-        margin-left: auto;
-        margin-right: auto;
-        width: 85%; 
-    }
-
-    .bar {
-        width: calc((100% / 15) - 5px);
+    .sortcontainer,.container  {
+        margin: 0 auto;
+        width: 95%;
+        margin-left: 20px;
     }
 
     .bars {
         height: 350px;
-        margin-left: auto;
-        margin-right: auto;
+        margin: 0 auto;
+    }
+
+    .bar {
+        flex: 1 1 calc(25% - 2px);
     }
 
     .input-container {
         width: 100%;
-        max-width: 400px; 
+        max-width: 400px;
         padding: 10px;
-        min-height: 100px; 
+        min-height: 100px;
     }
 
     .submitted-data {
@@ -374,29 +428,37 @@ input[type="text"] {
 }
 
 @media screen and (max-width: 768px) {
+    .dashboard {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    .dashboard h2 {
+        font-size: 2.5rem; 
+    }
+
+    .welcome-img {
+        width: 100px; 
+    }
+    #user-name {
+        flex: none; 
+    }
+
     .controls {
         padding: 10px;
-        margin-left: auto;
-        margin-right: auto;
-        width: 35rem;
-        max-width: 90%; 
-        min-height: 100px; 
+        width: 85%;
+        max-width: 100%;
+        min-height: 100px;
     }
 
-    .sortcontainer {
-        margin-left: auto;
-        margin-right: auto;
-        width: 90%; 
-    }
-
-    .bar {
-        width: calc((100% / 10) - 5px); 
+    .sortcontainer,.container  {
+        margin: 0 auto;
+        width: 95%;
     }
 
     .bars {
-        height: 300px;
-        margin-left: auto;
-        margin-right: auto;
+        height: 350px;
+        margin: 0 auto;
     }
 
     .input-container {
@@ -411,32 +473,45 @@ input[type="text"] {
 }
 
 @media screen and (max-width: 480px) {
+    .dashboard{
+        width: 100%;
+    }
+
+    .dashboard h2 {
+        font-size: 1.5rem; 
+        margin-bottom: 20px; 
+    }
+
+    .welcome-img {
+        width: 100px; 
+    }
+
     .controls {
         padding: 8px;
-        width: 50rem; 
-        margin-left: auto;
-        margin-right: auto;
-        max-width: 90%; 
+        margin: 0 auto;
+        width: 100%;
+        margin-left: 5px;
     }
 
+    .container,
     .sortcontainer {
-        margin-left: auto;
-        margin-right: auto;
-        width: 95%; 
-    }
-
-    .bar {
-        width: calc((100% / 8) - 5px); 
+        width: 105%;
+        margin: 0 auto; 
+        margin-right: 10px;
     }
 
     .bars {
-        height: 250px;
-        margin-left: auto;
-        margin-right: auto;
+        height: 350px;
+        margin: 0 auto;
+    }
+
+    .bar {
+        flex: 1 1 calc((100% - 10px) / 10);
+        font-size: 10px;
     }
 
     .input-container {
-        padding: 5px;
+        padding: 10px;
         width: 100%;
         max-width: 400px;
     }
@@ -444,5 +519,7 @@ input[type="text"] {
     .submitted-data {
         padding: 5px;
     }
+    .button-container{
+        margin-left: 5px;
+    }
 }
-

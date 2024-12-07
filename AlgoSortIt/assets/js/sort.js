@@ -27,7 +27,10 @@ document.addEventListener("DOMContentLoaded", () => {
         arraySizeValue.textContent = newSize; 
         generateBars(newSize); 
     }
-
+    
+    window.sliderChange = sliderChange;
+    arraySizeSlider.addEventListener("input", sliderChange); 
+    
     function generateBars(num = 20) {
         const maxBars = 50; 
         if (num > maxBars) num = maxBars; 
@@ -62,7 +65,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
    
     sliderChange(); 
-    arraySizeSlider.addEventListener("input", sliderChange); 
 
     function generateBarsFromInput(input) {
         const heights = input.split(',').map(num => parseInt(num.trim())).filter(num => !isNaN(num));
@@ -218,7 +220,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 bars[minOrMaxIndex].style("height", `${originalHeights[minOrMaxIndex] * heightScalingFactor}px`).text(originalHeights[minOrMaxIndex]);
             }
             
-            bars[i].style("background-color", "#6E605F");
+            bars[i].style("background-color", "#16425b");
         }
     
         bars[bars.length - 1].style("background-color", "green");
@@ -258,7 +260,7 @@ document.addEventListener("DOMContentLoaded", () => {
     
             originalHeights[j] = heightToInsert;
             bars[j].style("height", `${originalHeights[j] * heightScalingFactor}px`).text(originalHeights[j]);
-            bars[j].style("background-color", "#6E605F");
+            bars[j].style("background-color", "#16425b");
         }
 
         startButton.disabled = false;
@@ -326,7 +328,7 @@ document.addEventListener("DOMContentLoaded", () => {
     
       
             for (let index = left; index <= right; index++) {
-                bars[index].style("background-color", "#6E605F");
+                bars[index].style("background-color", "#16425b");
             }
         }
     

@@ -12,7 +12,10 @@
 <body>
     <main class="main">
         <div class="dashboard">
-            <h2>Welcome back <span id="user-name"></span></h2>
+            <h2>
+                Welcome back, &nbsp; <span id="user-name"></span>
+                <img src="/assets/icons/coding.png" alt="Coding Image" class="welcome-img">
+            </h2>
         </div>
         
    
@@ -79,8 +82,11 @@
         </div>
         </div>
 
+       
         <div class="sortcontainer">
+            <div class="container">
             <div class="bars" id="bars-container"></div>
+            </div>
 
             <div class="input-container">
                 <label for="input-data">Input Data (comma-separated)</label>
@@ -100,7 +106,7 @@
                 <button class="compare-button" onclick="location.href='/allsort'">Compare Algorithms</button>
             </div> 
         </div>
-
+ 
         
         <div id="navbar-placeholder"></div>
         <script src="/base.js"></script>
@@ -125,6 +131,31 @@
         
             const app = initializeApp(firebaseConfig);
             const database = getDatabase(app);
+
+                    // Function to display the username
+            async function displayUsername() {
+                const username = localStorage.getItem("username");
+                if (username) {
+                    // Fetch user data to ensure it exists
+                    try {
+                        const usernameRef = ref(database, `usernames/${username}`);
+                        const snapshot = await get(usernameRef);
+                        if (snapshot.exists()) {
+                            document.getElementById("user-name").innerText = username;
+                        } else {
+                            console.log("Username not found in database.");
+                            document.getElementById("user-name").innerText = "User";
+                        }
+                    } catch (error) {
+                        console.error("Error fetching username:", error);
+                    }
+                } else {
+                    document.getElementById("user-name").innerText = "Guest";
+                }
+            }
+
+            // Display the username when the page loads
+            window.onload = displayUsername;
         
             document.getElementById("submit").addEventListener('click', async function (e) {
                 e.preventDefault();

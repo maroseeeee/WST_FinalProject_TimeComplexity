@@ -6,7 +6,6 @@ const port = 3000;
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Serve static files from the assets directory
 app.use('/assets', express.static(path.join(__dirname, 'assets')));
 
 

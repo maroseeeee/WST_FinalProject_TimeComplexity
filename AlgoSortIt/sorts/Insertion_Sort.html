@@ -11,55 +11,50 @@
     <div id="sort-cover">
         <div class="info-parent">
             <div class="sort-description">
+                <div class="description-box">
                 <h2>INSERTION SORT</h2>
                 <br>
+                <p>
                 Insertion Sort is a simple sorting algorithm that builds the sorted list one item at a time. It is efficient for small datasets and partially sorted lists,
                 making it commonly used in scenarios where data is nearly sorted or only a few elements need to be sorted.
+            </p>
             </div>
-            <div class="table-box">
-                <h2>COMPLEXITY</h2>
-                <table class="sort-table">
-                    <tr>
-                        <th>Average Complexity</th>
-                        <td>O(n<sup>2</sup>)</td>
-                    </tr>
-                    <tr>
-                        <th>Best Case</th>
-                        <td>O(n)</td>
-                    </tr>
-                    <tr>
-                        <th>Worst Case</th>
-                        <td>O(n<sup>2</sup>)</td>
-                    </tr>
-                </table>
-            
-            </div>
+        </div>
 
+  
             <div class="content-container">
-            <div id="process-container" data-aos="fade-right" data-aos-delay="250" data-aos-easing="ease-in-out">
-            <div class="step-process">
-                <h3>Step-by-Step Process</h3>
-                <p><strong>Step 1:</strong> We start with an unsorted array.</p>
-                <p><code>[7, 12, 9, 11, 3]</code></p>
-                <p><strong>Step 2:</strong> We can consider the first value as the initial sorted part of the array. If it is just one value, it must be sorted, right?</p>
-                <p><code>[7, 12, 9, 11, 3]</code></p>
-                <p><strong>Step 3:</strong> The next value 12 should now be moved into the correct position in the sorted part of the array. But 12 is higher than 7, so it is already in the correct position.</p>
-                <p><code>[7, 12, 9, 11, 3]</code></p>
-                <p><strong>Step 4:</strong> Consider the next value 9.</p>
-                <p><code>[7, 12, 9, 11, 3]</code></p>
-                <p><strong>Step 5:</strong> The value 9 must now be moved into the correct position inside the sorted part of the array, so we move 9 in between 7 and 12.</p>
-                <p><code>[7, 9, 12, 11, 3]</code></p>
-                <p><strong>Step 6:</strong> The next value is 11.</p>
-                <p><code>[7, 9, 12, 11, 3]</code></p>
-                <p><strong>Step 7:</strong> We move it in between 9 and 12 in the sorted part of the array.</p>
-                <p><code>[7, 9, 11, 12, 3]</code></p>
-                <p><strong>Step 8:</strong> The last value to insert into the correct position is 3.</p>
-                <p><code>[7, 9, 11, 12, 3]</code></p>
-                <p><strong>Step 9:</strong> We insert 3 in front of all other values because it is the lowest value.</p>
-                <p><code>[3, 7, 9, 11, 12]</code></p>
-                <p><strong>Finally, the array is sorted:</strong></p>
-                <p><code>[3, 7, 9, 11, 12]</code></p>
-            </div>
+                <div id="table-container" data-aos="fade-right" data-aos-delay="250" data-aos-easing="ease-in-out">
+                <div class="table-box">
+                    <h2>TIME COMPLEXITY</h2>
+                    <table class="sort-table">
+                        <tr>
+                            <th>Average Complexity</th>
+                            <td>O(n<sup>2</sup>)</td>
+                        </tr>
+                        <tr>
+                            <th>Best Case</th>
+                            <td>O(n)</td>
+                        </tr>
+                        <tr>
+                            <th>Worst Case</th>
+                            <td>O(n<sup>2</sup>)</td>
+                        </tr>
+                    </table>
+                </div>
+                </div>
+
+            <div class="container" data-aos="fade-up" data-aos-delay="250" data-aos-easing="ease-in-out">
+            <div class="pseudocode">
+                <pre><h2>Pseudocode</h2>for i: 1 to length(A) -1
+
+j=i 
+                    
+while j > 0 and A[j-1] > A[j] 
+swap A[j] and A[j-1] 
+j=j-1
+    </pre>
+</div>
+
         </div>
             <div id="youtube-container" data-aos="fade-left" data-aos-delay="250" data-aos-easing="ease-in-out">
                 <div class="video-container">

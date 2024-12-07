@@ -11,52 +11,67 @@
     <div id="sort-cover">
         <div class="info-parent">
             <div class="sort-description">
+                <div class="description-box">
                 <h2>QUICK SORT</h2>
                 <br>
+                <p>
                 Quick Sort is an efficient, in-place sorting algorithm that uses a divide-and-conquer strategy. It sorts an array by partitioning it into smaller subarrays, with elements placed according to a "pivot" element, and then recursively sorting the subarrays. 
-             
+            </p>
             </div>
-            <div class="table-box">
-                <h2>COMPLEXITY</h2>
-                <table class="sort-table">
-                    <tr>
-                        <th>Average Complexity</th>
-                        <td>O(n log n)</td>
-                    </tr>
-                    <tr>
-                        <th>Best Case</th>
-                        <td>O(n log n)</td>
-                    </tr>
-                    <tr>
-                        <th>Worst Case</th>
-                        <td>O(n<sup>2</sup>)</td>
-                    </tr>
-                </table>
-               
-            </div>
+        </div>
+            
 
             <div class="content-container">
-            <div id="process-container" data-aos="fade-right" data-aos-delay="250" data-aos-easing="ease-in-out">
-            <div class="step-process">
-                <h3>Step-by-Step Process</h3>
-                <p><strong>Step 1:</strong> We start with an unsorted array.</p>
-                <p><code>[11, 9, 12, 7, 3]</code></p>
-                <p><strong>Step 2:</strong> We choose the last value 3 as the pivot element.</p>
-                <p><code>[11, 9, 12, 7, 3]</code></p>
-                <p><strong>Step 3:</strong> The rest of the values in the array are all greater than 3, and must be on the right side of 3. Swap 3 with 11.</p>
-                <p><code>[3, 9, 12, 7, 11]</code></p>
-                <p><strong>Step 4:</strong> Value 3 is now in the correct position. We need to sort the values to the right of 3. We choose the last value 11 as the new pivot element.</p>
-                <p><code>[3, 9, 12, 7, 11]</code></p>
-                <p><strong>Step 5:</strong> The value 7 must be to the left of pivot value 11, and 12 must be to the right of it. Move 7 and 12.</p>
-                <p><code>[3, 9, 7, 12, 11]</code></p>
-                <p><strong>Step 6:</strong> Swap 11 with 12 so that lower values 9 and 7 are on the left side of 11, and 12 is on the right side.</p>
-                <p><code>[3, 9, 7, 11, 12]</code></p>
-                <p><strong>Step 7:</strong> 11 and 12 are in the correct positions. We choose 7 as the pivot element in the sub-array [9, 7], to the left of 11.</p>
-                <p><code>[3, 9, 7, 11, 12]</code></p>
-                <p><strong>Step 8:</strong> We must swap 9 with 7.</p>
-                <p><code>[3, 7, 9, 11, 12]</code></p>
-                <p><strong>Finally, the array is sorted:</strong></p>
-                <p><code>[3, 7, 9, 11, 12]</code></p>
+                <div id="table-container" data-aos="fade-right" data-aos-delay="250" data-aos-easing="ease-in-out">
+                <div class="table-box">
+                    <h2>TIME COMPLEXITY</h2>
+                    <table class="sort-table">
+                        <tr>
+                            <th>Average Complexity</th>
+                            <td>O(n log n)</td>
+                        </tr>
+                        <tr>
+                            <th>Best Case</th>
+                            <td>O(n log n)</td>
+                        </tr>
+                        <tr>
+                            <th>Worst Case</th>
+                            <td>O(n<sup>2</sup>)</td>
+                        </tr>
+                    </table>
+                </div>
+                </div>
+                
+            <div id="quick-container" data-aos="fade-up" data-aos-delay="250" data-aos-easing="ease-in-out">
+            <div class="pseudocode">
+                <h2>Pseudocode
+                    <span class="toggle-arrow" onclick="togglePseudocode()">
+                        <img src="assets/icons/arrow-down.png" class="arrow-icon" alt="Toggle Arrow">
+                    </span>
+                    
+                </h2>
+                <pre id="pseudocodeContainer">
+Quicksort (A as array, low as int, <br>high as int)                 
+if (low < high) 
+pivot_location = Partition<br> (A, low, high) 
+Quicksort (A, low, pivot_location - 1) 
+Quicksort (A, pivot_location + 1, high)
+                                
+<div class="hidden-text">     
+Partition (A as array, low as int, high as int)      
+pivot = A[low]
+leftwall = low 
+                                
+for i = low + 1 to high 
+if (A[i] < pivot) then 
+(A[i], A[leftwall]) 
+leftwall = leftwall + 1 
+                                
+swap (pivot, A[leftwall]) 
+                                
+return (leftwall)
+</div>
+                </pre>                
             </div>
         </div>
                 <div id="youtube-container" data-aos="fade-left" data-aos-delay="250" data-aos-easing="ease-in-out">
@@ -74,6 +89,25 @@
     <script>
          AOS.init();
         loadNavbar();
+
+        function togglePseudocode() {
+    const quickContainer = document.getElementById('quick-container');
+    const pseudocodeContainer = document.getElementById('pseudocodeContainer');
+    const hiddenText = pseudocodeContainer.querySelector('.hidden-text');
+    const toggleArrow = document.querySelector('.arrow-icon');
+    
+    if (quickContainer.classList.contains('open')) {
+        
+        hiddenText.style.display = 'none'; 
+        quickContainer.classList.remove('open');
+        toggleArrow.src = 'assets/icons/arrow-down.png'; 
+    } else {
+    
+        hiddenText.style.display = 'block';
+        quickContainer.classList.add('open');
+        toggleArrow.src = 'assets/icons/arrow-up.png'; 
+    }
+}
     </script>
 </body>
 </html>

@@ -11,44 +11,85 @@
     <div id="sort-cover">
         <div class="info-parent">
             <div class="sort-description">
+                <div class="description-box">
                 <h2>MERGE SORT</h2>
                 <br>
+                <p>
                 Merge Sort is a divide-and-conquer sorting algorithm that recursively splits a list into smaller sublists, sorts them, and then merges them back together in sorted order. 
                 It’s efficient for large datasets due to its predictable time complexity and stable nature, making it a popular choice for sorting linked lists and other data structures.
+            </p>
             </div>
-            <div class="table-box">
-                <h2>COMPLEXITY</h2>
-                <table class="sort-table">
-                    <tr>
-                        <th>Average Complexity</th>
-                        <td>O(n log n)</td>
-                    </tr>
-                    <tr>
-                        <th>Best Case</th>
-                        <td>O(n log n)</td>
-                    </tr>
-                    <tr>
-                        <th>Worst Case</th>
-                        <td>O(n log n)</td>
-                    </tr>
-                </table>
-                
-            </div>
+        </div>
+            
 
             <div class="content-container">
-            <div id="process-container" data-aos="fade-right" data-aos-delay="250" data-aos-easing="ease-in-out">
-            <div class="step-process">
-                <h3>Step-by-Step Process</h3>
-                <p><strong>Step 1:</strong> Split the array into two halves.</p>
-                <p><code>[11, 9, 12, 7, 3] → [11, 9, 12] and [7, 3]</code></p>
-                <p><strong>Step 2:</strong> Recursively split the subarrays until each subarray contains a single element.</p>
-                <p><code>[11, 9] → [11] and [9], [12] → [12], [7, 3] → [7] and [3]</code></p>
-                <p><strong>Step 3:</strong> Merge the subarrays back together in sorted order.</p>
-                <p><code>[11] and [9] → [9, 11], [7] and [3] → [3, 7]</code></p>
-                <p><strong>Step 4:</strong> Merge the sorted subarrays back into a single sorted array.</p>
-                <p><code>[9, 11] and [12] → [9, 11, 12], [3, 7] → [3, 7]</code></p>
-                <p><strong>Step 5:</strong> Final merge gives the sorted array.</p>
-                <p><code>[3, 7, 9, 11, 12]</code></p>
+                <div id="table-container" data-aos="fade-right" data-aos-delay="250" data-aos-easing="ease-in-out">
+                <div class="table-box">
+                    <h2>TIME COMPLEXITY</h2>
+                    <table class="sort-table">
+                        <tr>
+                            <th>Average Complexity</th>
+                            <td>O(n log n)</td>
+                        </tr>
+                        <tr>
+                            <th>Best Case</th>
+                            <td>O(n log n)</td>
+                        </tr>
+                        <tr>
+                            <th>Worst Case</th>
+                            <td>O(n log n)</td>
+                        </tr>
+                    </table>
+                </div>
+                </div>
+                
+            <div id="merge-container" data-aos="fade-up" data-aos-delay="250" data-aos-easing="ease-in-out">
+            <div class="pseudocode">
+                <h2>Pseudocode
+                    <span class="toggle-arrow" onclick="togglePseudocode()">
+                    <img src="assets/icons/arrow-down.png" class="arrow-icon" alt="Toggle Arrow">
+                </span>
+                </h2>
+                <pre id="pseudocodeContainer">function mergeSort(array)
+mergesort (array a)<br>// Halves the array
+if ( n == 1 )
+return a
+
+arrayOne = a[0].. a[n/2]
+arrayTwo = a[n/2+1].. a[n]
+
+<div class="hidden-text">
+arrayOne = mergesort ( arrayOne ) 
+arrayTwo = mergesort( arrayTwo ) 
+
+return merge( arrayOne, arrayTwo )
+
+merge ( array a, aray b)<br> // Merges the array
+array c
+
+while(a and b have elements)
+if ( a[0] >  b[0] )
+add b[0] to the end of c
+remove b[0] from b 
+
+else
+add a[0] to the end of c
+remove a[0] from a
+
+//At this point either a or b<br> is empty 
+
+while (a has elements )
+add a[0] to the end of c
+remove a[0] from a 
+
+while ( b has elements )
+add b[0] to the end of c
+remove b[0] from b 
+
+return c
+</div>
+            </pre>
+       
             </div>
             </div>
                 <div id="youtube-container" data-aos="fade-left" data-aos-delay="250" data-aos-easing="ease-in-out">
@@ -66,6 +107,19 @@
     <script>
          AOS.init();
         loadNavbar();
+        
+        function togglePseudocode() {
+    const mergeContainer = document.getElementById('merge-container');
+    const toggleArrow = document.querySelector('.arrow-icon');
+
+    if (mergeContainer.classList.contains('open')) {
+        mergeContainer.classList.remove('open');
+        toggleArrow.src = 'assets/icons/arrow-down.png';
+    } else {
+        mergeContainer.classList.add('open');
+        toggleArrow.src = 'assets/icons/arrow-up.png';
+    }
+}
     </script>
 </body>
 </html>

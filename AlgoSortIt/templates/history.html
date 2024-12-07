@@ -8,6 +8,7 @@
 </head>
 <body>
 
+
 <h2>Sort History Data Table</h2>
 
 <div class="table-container">
@@ -20,7 +21,7 @@
             </tr>
         </thead>
         <tbody>
-            <!-- From database-->
+          
         </tbody>
     </table>
 </div>
@@ -51,10 +52,9 @@
     const username = localStorage.getItem("username");
     const inputsRef = ref(database, `usernames/${username}/input`);
 
-    // Fetch data and display
     onValue(inputsRef, (snapshot) => {
         const tableBody = document.getElementById("inputsTable").getElementsByTagName("tbody")[0];
-        tableBody.innerHTML = "";  // Clear the table before adding
+        tableBody.innerHTML = "";  
 
         if (snapshot.exists()) {
             const inputsData = snapshot.val();
@@ -63,21 +63,20 @@
                 for (const time in inputsData[date]) {
                     const inputData = inputsData[date][time];
 
-                    const newRow = tableBody.insertRow(); // New row
+                    const newRow = tableBody.insertRow(); 
 
-                    const dateCell = newRow.insertCell(0); // Date
+                    const dateCell = newRow.insertCell(0); 
                     dateCell.textContent = date;
 
-                    const timeCell = newRow.insertCell(1); // Time
+                    const timeCell = newRow.insertCell(1); 
                     timeCell.textContent = time;
 
-                    // Add input cell
                     const inputCell = newRow.insertCell(2);
-                    inputCell.textContent = inputData;  // Only show the input value
+                    inputCell.textContent = inputData;  
                 }
             }
         } else {
-            // If no data
+            
             const newRow = tableBody.insertRow();
             const noDataCell = newRow.insertCell(0);
             noDataCell.colSpan = 3;
