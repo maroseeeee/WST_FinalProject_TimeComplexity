@@ -16,7 +16,7 @@ body {
     background-attachment: fixed;
 }
 
-.main{
+.main {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -24,8 +24,11 @@ body {
     margin-top: 80px;
     text-align: center;
     box-sizing: border-box;
-    
+    max-width: 1800px; 
+    margin-left: auto; 
+    margin-right: auto;
 }
+
 
 .all-algo{
     display: flex;
