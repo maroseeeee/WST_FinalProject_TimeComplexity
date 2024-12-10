@@ -478,12 +478,12 @@ input[type="text"] {
     }
 
     .dashboard h2 {
-        font-size: 1.5rem; 
+        font-size: 1.2rem; 
         margin-bottom: 20px; 
     }
 
     .welcome-img {
-        width: 100px; 
+        width: 120px; 
     }
 
     .controls {
@@ -521,5 +521,27 @@ input[type="text"] {
     }
     .button-container{
         margin-left: 5px;
+    }
+}
+
+
+
+@media screen and (max-width: 320px) {
+    .dashboard{
+        width: 100%;
+    }
+
+    .dashboard h2 {
+        font-size: 1.1rem; 
+        margin-bottom: 20px; 
+    }
+
+    .welcome-img {
+        width: 100px; 
+    }
+    .image-button img{
+        width: 40px;
+        height: 40px;
+        transition: transform 0.2s; 
     }
 }

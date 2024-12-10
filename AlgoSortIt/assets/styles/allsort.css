@@ -399,3 +399,26 @@ input[type="text"] {
         margin-left: 5px;
     }
 }
+
+@media (max-width: 320px) {
+
+    .controls {
+        padding: 8px;
+        width: 95%;
+        margin-left: 5px;
+    }
+    .container {
+        margin-left: 10px;
+        width: 95%;
+    }
+    .input-container {
+        padding: 5px;
+        width: 100%;
+        max-width: 400px;
+    }
+    .image-button img{
+        width: 30px;
+        height: 30px;
+        transition: transform 0.2s; 
+    }
+}
