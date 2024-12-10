@@ -86,7 +86,7 @@ document.addEventListener("DOMContentLoaded", () => {
             .attr("class", "bar")
             .style("height", d => `${d * scalingFactor}px`)
             .style("width", `${barWidth}px`)
-            .style("background-color", "#6E605F")
+            .style("background-color", "#16425b")
             .text(d => d)
             .each(function(d, i) {
                 bars.push(d3.select(this));

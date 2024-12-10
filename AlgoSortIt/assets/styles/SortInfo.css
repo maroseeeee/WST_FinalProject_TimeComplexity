@@ -4,7 +4,7 @@
 body {
     margin: 0;
     padding: 0;
-    font-family: "Nunito", serif;
+    font-family: "Lora", serif;
 }
 
 #sort-cover {
@@ -119,8 +119,8 @@ body {
     overflow-wrap: break-word;
     word-wrap: break-word;
     white-space: pre-wrap; 
-    overflow: auto; /* Add scrollbars for overflowing content */
-    max-width: 100%; /* Ensure it stays within the parent */
+    overflow: auto;
+    max-width: 100%; 
 }
 
 

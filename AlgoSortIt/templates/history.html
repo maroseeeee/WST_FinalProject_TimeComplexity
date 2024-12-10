@@ -8,7 +8,6 @@
 </head>
 <body>
 
-
 <h2>Sort History Data Table</h2>
 
 <div class="table-container">
@@ -21,7 +20,7 @@
             </tr>
         </thead>
         <tbody>
-          
+            
         </tbody>
     </table>
 </div>
@@ -63,7 +62,7 @@
                 for (const time in inputsData[date]) {
                     const inputData = inputsData[date][time];
 
-                    const newRow = tableBody.insertRow(); 
+                    const newRow = tableBody.insertRow();
 
                     const dateCell = newRow.insertCell(0); 
                     dateCell.textContent = date;
@@ -71,6 +70,7 @@
                     const timeCell = newRow.insertCell(1); 
                     timeCell.textContent = time;
 
+                  
                     const inputCell = newRow.insertCell(2);
                     inputCell.textContent = inputData;  
                 }
