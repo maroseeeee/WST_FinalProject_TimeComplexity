@@ -1,0 +1,377 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Nunito", serif;
+}
+
+body {
+  background-color: #c9d6ff;
+  background: linear-gradient(to bottom, #3A7CA5, #D9DCD6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Nunito", serif;
+  height: 100vh;
+}
+
+.container {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+  position: relative;
+  overflow: hidden;
+  width: 800px;
+  max-width: 100%;
+  min-height: 600px;
+}
+
+.container p {
+  font-size: 14px;
+  line-height: 20px;
+  margin: 20px 0;
+}
+
+.container a {
+  color: #333;
+  font-size: 13px;
+  text-decoration: none;
+  margin: 15px 0 10px;
+}
+
+.container button {
+  background-color: #16425B;
+  color: #fff;
+  padding: 10px 45px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-top: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.container button.hidden {
+  background-color: transparent;
+  border-color: #fff;
+}
+
+.container button:hover {
+  background-color: #3a7ca5;
+  color: #e2e2e2;
+}
+
+.container form {
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0 40px;
+  height: 100%;
+}
+
+h1{
+  text-align: center;
+  font-size: 2.0rem;
+  margin: 20px 0;
+}
+
+.toggle h1, p{
+  font-size: 2.5rem;
+  color: #D9DCD6;
+}
+
+.container .input-box {
+  width: 100%;
+  height: 45px;
+  background-color: transparent;
+  margin-top: 20px;
+  position: relative;
+}
+
+#signin{
+  margin-top: 20px;
+}
+
+.input-box input {
+  width: 100%;
+  height: 45px;
+  border-radius: 6px;
+  border: 1px solid #16425B;
+  padding: 20px 45px 20px 20px;
+}
+
+.input-box input::placeholder {
+  color: gray;
+  font-size: 16px;
+}
+
+.input-box i {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.user-remember {
+  margin: 5px 0px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.user-remember a {
+  text-decoration: none;
+  color: black;
+  margin-left: 5px;
+}
+
+.sign-up,
+.login,
+.forgot-password {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  transition: all 0.6s ease-in-out;
+}
+
+.login {
+  left: 0;
+  width: 50%;
+  z-index: 2;
+}
+
+.container.active .login {
+  transform: translateX(100%);
+}
+
+.sign-up {
+  left: 0;
+  width: 50%;
+  z-index: 1;
+  opacity: 0;
+}
+
+.container.active .sign-up {
+  transform: translateX(100%);
+  opacity: 1;
+  z-index: 5;
+  animation: move 0.6s;
+}
+
+.forgot-password {
+  margin-top: 20px;
+  right: 0;
+  width: 50%;
+  z-index: 1;
+  opacity: 0;
+  transform: translateX(100%);
+  transition: all 0.6s ease-in-out;
+}
+
+.container.forgot-password-active .login,
+.container.forgot-password-active .sign-up,
+.container.forgot-password-active .toggle-container {
+  transform: translateX(-100%);
+}
+
+.container.forgot-password-active .forgot-password {
+  transform: translateX(0);
+  opacity: 1;
+  z-index: 5;
+}
+
+.reset-password {
+  position: absolute;
+  top: 50%; 
+  left: 50%;
+  transform: translate(-50%, -50%); 
+  margin-bottom: 10rem;
+  opacity: 0; 
+  z-index: 1;
+  bottom: -100%; 
+  right: 0;
+  transition: all 0.6s ease-in-out;
+}
+
+.reset-password h4 {
+  color: gray;
+  text-align: center; 
+}
+
+.container.reset-password-active .reset-password {
+  opacity: 1; 
+  z-index: 5; 
+}
+
+.container.reset-password-active .forgot-password,
+.container.reset-password-active .toggle-container {
+
+  transition: opacity 0.3s ease-in-out;
+  opacity: 0;
+  z-index: 1;
+}
+
+.back-button {
+  position: absolute;
+  top: 20px; 
+  left: 20px; 
+  width: 40px;
+  height: 40px;
+  background-color: #fff; 
+  border: none; 
+  border-radius: 50%; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); 
+  transition: background-color 0.3s, transform 0.3s; 
+  cursor: pointer;
+}
+
+.back-button:hover {
+  background-color: #e2e2e2;
+  transform: scale(1.1);
+}
+
+.back-button i {
+  color: #333;
+  font-size: 20px;
+}
+
+@keyframes move {
+  0%,
+  49.99% {
+    opacity: 0;
+    z-index: 1;
+  }
+  50%,
+  100% {
+    opacity: 1;
+    z-index: 5;
+  }
+}
+
+.toggle-container {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 1000;
+  transition: all 0.6s ease-in-out;
+}
+
+.container.active .toggle-container {
+  transform: translateX(-100%);
+}
+
+.toggle {
+  height: 100%;
+  background: linear-gradient(to bottom, #3a7ca5, #81C3D7);
+  color: black;
+  position: relative;
+  left: -100%;
+  width: 200%;
+  transform: translateX(0);
+  transition: all 0.6s ease-in-out;
+}
+
+#signup, #login{
+  color: #D9DCD6;
+}
+
+
+.toggle button {
+  color: black;
+}
+
+.container.active .toggle {
+  transform: translateX(50%);
+}
+
+.toggle-panel {
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 0 30px;
+  text-align: center;
+  top: 0;
+  transition: all 0.6s ease-in-out;
+}
+
+.toggle-left {
+  transform: translateX(-200%);
+}
+
+.container.active .toggle-left {
+  transform: translateX(0);
+}
+
+.toggle-right {
+  right: 0;
+  transform: translateX(0);
+}
+
+.container.active .toggle-right {
+  transform: translateX(200%);
+}
+
+
+@media (max-width: 768px) {
+  .container {
+    width: 90%;
+    min-height: 600px;
+    padding: 20px;
+  }
+
+  .container form {
+    padding: 10px;
+  }
+
+  .input-box input {
+    padding: 10px 20px;
+  }
+
+  .container button {
+    padding: 10px 30px;
+  }
+
+  .user-remember {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  h1 {
+    font-size: 2rem;
+    margin: 15px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    width: 100%;
+    padding: 10px;
+  }
+
+  .container button {
+    padding: 8px 20px;
+    font-size: 14px;
+  }
+
+  .input-box input {
+    padding: 8px 15px;
+    font-size: 14px;
+  }
+  h1 {
+    font-size: 1.5rem;
+    margin: 10px 0;
+  }
+}

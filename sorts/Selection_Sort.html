@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sort Visualizer - Selection Sort</title>
+    <link rel="stylesheet" href="/assets/styles/SortInfo.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+</head>
+<body>
+    <div id="sort-cover">
+        <div class="info-parent">
+            <div class="sort-description">
+                <div class="description-box">
+                <h2>SELECTION SORT</h2>
+                <br>
+                <p>
+                Selection Sort is a simple, comparison-based sorting algorithm that sorts an array or list by repeatedly finding the minimum
+                (or maximum, depending on order) element from the unsorted portion and moving it to the beginning (or end) of the list.           
+            </p>
+            </div>
+        </div>
+           
+
+            <div class="content-container">
+                <div id="table-container" data-aos="fade-right" data-aos-delay="250" data-aos-easing="ease-in-out">
+                <div class="table-box">
+                    <h2>TIME COMPLEXITY</h2>
+                    <table class="sort-table">
+                        <tr>
+                            <th>Average Complexity</th>
+                            <td>O(n<sup>2</sup>)</td>
+                        </tr>
+                        <tr>
+                            <th>Best Case</th>
+                            <td>O(n<sup>2</sup>)</td>
+                        </tr>
+                        <tr>
+                            <th>Worst Case</th>
+                            <td>O(n<sup>2</sup>)</td>
+                        </tr>
+                    </table>
+                </div>
+                </div>
+
+            <div class="container" data-aos="fade-up" data-aos-delay="250" data-aos-easing="ease-in-out">
+            <div class="pseudocode">       
+            <pre><h2>Pseudocode</h2>for (j = 0; j < n-1; j++) 
+int iMin = j; 
+                
+for (i = j+1; i < n; i++) 
+if (a[i] < a[iMin]) 
+iMin = i; 
+                
+if (iMin != j) 
+swap(a[j], a[iMin]);
+    </pre>
+            </div>
+        </div>
+                <div id="youtube-container" data-aos="fade-left" data-aos-delay="250" data-aos-easing="ease-in-out">
+                    <div class="video-container">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/g-PGLbMth_g?si=zUAVobdf_vnvfruI" title="YouTube video player" frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="navbar-placeholder"></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="/base.js"></script>
+    <script>
+         AOS.init();
+        loadNavbar();
+    </script>
+</body>
+</html>

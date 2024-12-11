@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sort Visualizer - Merge Sort</title>
+    <link rel="stylesheet" href="/assets/styles/SortInfo.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+</head>
+<body>
+    <div id="sort-cover">
+        <div class="info-parent">
+            <div class="sort-description">
+                <div class="description-box">
+                <h2>MERGE SORT</h2>
+                <br>
+                <p>
+                Merge Sort is a divide-and-conquer sorting algorithm that recursively splits a list into smaller sublists, sorts them, and then merges them back together in sorted order. 
+                It’s efficient for large datasets due to its predictable time complexity and stable nature, making it a popular choice for sorting linked lists and other data structures.
+            </p>
+            </div>
+        </div>
+            
+
+            <div class="content-container">
+                <div id="table-container" data-aos="fade-right" data-aos-delay="250" data-aos-easing="ease-in-out">
+                <div class="table-box">
+                    <h2>TIME COMPLEXITY</h2>
+                    <table class="sort-table">
+                        <tr>
+                            <th>Average Complexity</th>
+                            <td>O(n log n)</td>
+                        </tr>
+                        <tr>
+                            <th>Best Case</th>
+                            <td>O(n log n)</td>
+                        </tr>
+                        <tr>
+                            <th>Worst Case</th>
+                            <td>O(n log n)</td>
+                        </tr>
+                    </table>
+                </div>
+                </div>
+                
+            <div id="merge-container" data-aos="fade-up" data-aos-delay="250" data-aos-easing="ease-in-out">
+            <div class="pseudocode">
+                <h2>Pseudocode
+                    <span class="toggle-arrow" onclick="togglePseudocode()">
+                    <img src="assets/icons/arrow-down.png" class="arrow-icon" alt="Toggle Arrow">
+                </span>
+                </h2>
+                <pre id="pseudocodeContainer">function mergeSort(array)
+mergesort (array a)<br>// Halves the array
+if ( n == 1 )
+return a
+
+arrayOne = a[0].. a[n/2]
+arrayTwo = a[n/2+1].. a[n]
+
+<div class="hidden-text">
+arrayOne = mergesort ( arrayOne ) 
+arrayTwo = mergesort( arrayTwo ) 
+
+return merge( arrayOne, arrayTwo )
+
+merge ( array a, aray b)<br> // Merges the array
+array c
+
+while(a and b have elements)
+if ( a[0] >  b[0] )
+add b[0] to the end of c
+remove b[0] from b 
+
+else
+add a[0] to the end of c
+remove a[0] from a
+
+//At this point either a or b<br> is empty 
+
+while (a has elements )
+add a[0] to the end of c
+remove a[0] from a 
+
+while ( b has elements )
+add b[0] to the end of c
+remove b[0] from b 
+
+return c
+</div>
+            </pre>
+       
+            </div>
+            </div>
+                <div id="youtube-container" data-aos="fade-left" data-aos-delay="250" data-aos-easing="ease-in-out">
+                    <div class="video-container">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/4VqmGXwpLqc?si=Pzl3QfDGF2-OlcMd" title="YouTube video player" frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="navbar-placeholder"></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="/base.js"></script>
+    <script>
+         AOS.init();
+        loadNavbar();
+        
+        function togglePseudocode() {
+    const mergeContainer = document.getElementById('merge-container');
+    const toggleArrow = document.querySelector('.arrow-icon');
+
+    if (mergeContainer.classList.contains('open')) {
+        mergeContainer.classList.remove('open');
+        toggleArrow.src = 'assets/icons/arrow-down.png';
+    } else {
+        mergeContainer.classList.add('open');
+        toggleArrow.src = 'assets/icons/arrow-up.png';
+    }
+}
+    </script>
+</body>
+</html>
