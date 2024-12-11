@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sort Visualization</title>
-    <link rel="stylesheet" href="/assets/styles/sortstyle.css">
+    <link rel="stylesheet" href="/assets/styles/sort.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://d3js.org/d3.v7.min.js"></script>
    
@@ -148,16 +148,16 @@
                     if (snapshot.exists()) {
                         const userData = snapshot.val();
                         
-                        const currentDate = new Date().toISOString().split('T')[0]; // Key for Inputs
-                        const currentTime = new Date().toLocaleTimeString('en-US', { hour12: false }); // Key for date
+                        const currentDate = new Date().toISOString().split('T')[0]; 
+                        const currentTime = new Date().toLocaleTimeString('en-US', { hour12: false });
                         
                         if (userData.input) {
-                            // If input exists, check if the date exists
+                          
                             const dateRef = ref(database, `usernames/${username}/input/${currentDate}`);
                             const dateSnapshot = await get(dateRef);
 
                             if (dateSnapshot.exists()) {
-                                // If the date exists, add the input under the time key
+                           
                                 const inputRef = ref(database, `usernames/${username}/input/${currentDate}/${currentTime}`);
                                 set(inputRef, userInput)
                                     .then(() => {
@@ -167,7 +167,7 @@
                                         console.error("Error adding value:", error);
                                     });
                             } else {
-                                // If the date doesn't exist, create the date and add the input
+                           
                                 const updates = {};
                                 updates[`usernames/${username}/input/${currentDate}`] = {
                                     [currentTime]: userInput
@@ -181,7 +181,7 @@
                                     });
                             }
                         } else {
-                            // If input doesn't exist, create it
+                            
                             const updates = {};
                             updates[`usernames/${username}/input/${currentDate}`] = {
                                 [currentTime]: userInput

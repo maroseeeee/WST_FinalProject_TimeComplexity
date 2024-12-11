@@ -53,6 +53,24 @@ tbody tr:hover {
     background-color: #f1f1f1;
 }
 
+@media screen and (min-width: 1024px) {
+    .table-container {
+        margin-top: 5rem;
+        width: 95%;
+        max-width: 70rem;
+        padding: 30px;
+    }
+
+    table {
+        font-size: 1.1rem;
+    }
+
+    th, td {
+        padding: 10px;
+    }
+}
+
+
 @media screen and (max-width: 600px) {
     h2 {
         font-size: 1.5rem;
@@ -72,7 +90,7 @@ tbody tr:hover {
     }
 }
 
-/* Tablet view (medium screens) */
+
 @media screen and (max-width: 768px) {
     h2 {
         font-size: 1.6rem;
@@ -92,20 +110,3 @@ tbody tr:hover {
     }
 }
 
-/* Desktop view (large screens) */
-@media screen and (min-width: 1024px) {
-    .table-container {
-        margin-top: 5rem;
-        width: 95%;
-        max-width: 70rem;
-        padding: 30px;
-    }
-
-    table {
-        font-size: 1.1rem;
-    }
-
-    th, td {
-        padding: 10px;
-    }
-}
