@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/assets/styles/login.css" />
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"
+    />
+    <title>Login and Sign Up</title>
+</head>
+<body>
+    <div class="container" id="container">
+        
+        <div class="sign-up">
+            <form>
+                <h1>Sign Up</h1>
+                <div class="input-box">
+                    <input type="text" placeholder="Username" id="newUsername" required />
+                    <i class="fa-solid fa-user"></i>
+                </div>
+                <div class="input-box">
+                    <input type="email" placeholder="Email" id="newEmail" required />
+                    <i class="fa-solid fa-envelope"></i>
+                </div>
+                
+                <div class="input-box">
+                    <input type="password" placeholder="Password" id="newPassword" required/>
+                    <i class="fa-solid fa-lock"></i>
+                </div>
+                <div class="input-box">
+                    <input type="password" placeholder="Confirm Password" id="confirm" required />
+                    <i class="fa-solid fa-lock"></i>
+                </div>
+                <button type="submit" id="signin">Sign Up</button>
+            </form>
+        </div>
+
+        <div class="login">
+            <a href="/home" id="back-button" class="back-button">
+                <i class="fa-solid fa-arrow-left"></i>
+            </a>
+            <form>
+                <h1>Login</h1>
+                <div class="input-box">
+                    <input type="text" placeholder="Username" id="getUsername" required />
+                    <i class="fa-solid fa-user"></i>
+                </div>
+                <div class="input-box">
+                    <input type="password" placeholder="Password" id="getPassword" required />
+                    <i class="fa-solid fa-lock"></i>
+                </div>
+                <span id="error-message" style="color: red;"></span>
+                <div class="user-remember">      
+                    <a href="#" id="forgot-password-link">Forgot Password?</a>
+                </div>
+                <button type="submit" id="getIn">Login</button>
+            </form>
+        </div>
+
+        <div class="forgot-password">
+            <form>
+                <h1>Forgot Password</h1>
+                <div class="input-box">
+                    <input type="email" placeholder="Enter your email" id="resetPass" required />
+                    <i class="fa-solid fa-envelope"></i>
+                </div>
+                <button type="submit" id="resetBut">Reset Password</button>
+                <a href="#" id="back-to-login">Back to Login</a>
+            </form>
+        </div>
+
+        <div class="toggle-container">
+
+            <div class="toggle">
+                <div class="toggle-panel toggle-left">
+                    <h1>To keep connected with us,<br>please login! </h1>
+                    <p>If you already have an account</p>
+                    <button class="hidden" id="login">Sign In</button>
+                </div>
+                <div class="toggle-panel toggle-right">
+                    <h1>Start your journey with us!</h1>
+                    <p>If you don't have an account</p>
+                    <button class="hidden" id="signup">Sign Up</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
+        import { getDatabase, ref, set, get } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-database.js";
+    
+        const firebaseConfig = {
+            apiKey: "AIzaSyDVvkfslAMz95HfF0-5EIvq7ZZNmyIlsrM",
+            authDomain: "algosortit.firebaseapp.com",
+            databaseURL: "https://algosortit-default-rtdb.firebaseio.com",
+            projectId: "algosortit",
+            storageBucket: "algosortit.firebasestorage.app",
+            messagingSenderId: "1029666460693",
+            appId: "1:1029666460693:web:5161c3ac023a2c89eeea1c"
+        };
+    
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const database = getDatabase(app);
+    
+        // signup ito
+        document.getElementById("signin").addEventListener("click", async function (e) {
+            e.preventDefault();
+            const username = document.getElementById("newUsername").value;
+            const email = document.getElementById("newEmail").value;
+            const password = document.getElementById("newPassword").value;
+            const confirmPassword = document.getElementById("confirm").value;
+    
+            if (password !== confirmPassword) {
+                showAlert("Passwords do not match!", "red");
+                return;
+            }
+    
+            try {
+                const usernameRef = ref(database, `usernames/${username}`);
+                const snapshot = await get(usernameRef);
+    
+                if (snapshot.exists()) {
+                    showAlert("Username already exists!", "orange");
+                    return;
+                }
+    
+                const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+                const user = userCredential.user;
+    
+                await set(ref(database, `usernames/${username}`), {
+                    email: email
+                });
+    
+                showAlert("Account created successfully!", "green");
+            } catch (error) {
+                showAlert(`Error: ${error.message}`, "red");
+            }
+        });
+    
+        // login ito
+        document.getElementById("getIn").addEventListener("click", async function (e) {
+            e.preventDefault();
+            const username = document.getElementById("getUsername").value;
+            const password = document.getElementById("getPassword").value;
+    
+            try {
+                const usernameRef = ref(database, `usernames/${username}`);
+                const snapshot = await get(usernameRef);
+    
+                if (!snapshot.exists()) {
+                    showAlert("Username not found!", "red");
+                    return;
+                }
+    
+                const email = snapshot.val().email;
+    
+                await signInWithEmailAndPassword(auth, email, password);
+                localStorage.setItem("username", username);
+                showAlert("Login successful!", "green");
+                setTimeout(() => {
+                    window.location.href = "/sort";
+                }, 1000);
+            } catch (error) {
+                showAlert(`Error: ${error.message}`, "red");
+            }
+        });
+
+        // reset password ito
+        document.getElementById("resetBut").addEventListener("click", function (e) {
+            const email = document.getElementById("resetPass").value;
+            sendPasswordResetEmail(auth, email)
+            .then(() => {
+                showAlert("Email sent", "green");
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                showAlert(errorMessage, "red");
+            });
+        });
+    
+        function showAlert(message, color) {
+            const alertDiv = document.createElement("div");
+            alertDiv.textContent = message;
+            alertDiv.style.position = "fixed";
+            alertDiv.style.top = "10px";
+            alertDiv.style.left = "50%";
+            alertDiv.style.transform = "translateX(-50%)";
+            alertDiv.style.padding = "10px 20px";
+            alertDiv.style.backgroundColor = color;
+            alertDiv.style.color = "white";
+            alertDiv.style.borderRadius = "5px";
+            alertDiv.style.fontSize = "16px";
+            alertDiv.style.zIndex = "1000";
+    
+            document.body.appendChild(alertDiv);
+    
+            setTimeout(() => {
+                alertDiv.remove();
+            }, 2000);
+        }
+    </script>
+    <script src="/assets/js/login.js"></script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sort Visualizer - Insertion Sort</title>
+    <link rel="stylesheet" href="/assets/styles/SortInfo.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+</head>
+<body>
+    <div id="sort-cover">
+        <div class="info-parent">
+            <div class="sort-description">
+                <div class="description-box">
+                <h2>INSERTION SORT</h2>
+                <br>
+                <p>
+                Insertion Sort is a simple sorting algorithm that builds the sorted list one item at a time. It is efficient for small datasets and partially sorted lists,
+                making it commonly used in scenarios where data is nearly sorted or only a few elements need to be sorted.
+            </p>
+            </div>
+        </div>
+
+  
+            <div class="content-container">
+                <div id="table-container" data-aos="fade-right" data-aos-delay="250" data-aos-easing="ease-in-out">
+                <div class="table-box">
+                    <h2>TIME COMPLEXITY</h2>
+                    <table class="sort-table">
+                        <tr>
+                            <th>Average Complexity</th>
+                            <td>O(n<sup>2</sup>)</td>
+                        </tr>
+                        <tr>
+                            <th>Best Case</th>
+                            <td>O(n)</td>
+                        </tr>
+                        <tr>
+                            <th>Worst Case</th>
+                            <td>O(n<sup>2</sup>)</td>
+                        </tr>
+                    </table>
+                </div>
+                </div>
+
+            <div class="container" data-aos="fade-up" data-aos-delay="250" data-aos-easing="ease-in-out">
+            <div class="pseudocode">
+                <pre><h2>Pseudocode</h2>for i: 1 to length(A) -1
+
+j=i 
+                    
+while j > 0 and A[j-1] > A[j] 
+swap A[j] and A[j-1] 
+j=j-1
+    </pre>
+</div>
+
+        </div>
+            <div id="youtube-container" data-aos="fade-left" data-aos-delay="250" data-aos-easing="ease-in-out">
+                <div class="video-container">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/JU767SDMDvA?si=TqaQJsr2bMZsgAKF" title="YouTube video player" frameborder="0"
+                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+    <div id="navbar-placeholder"></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="/base.js"></script>
+    <script>
+         AOS.init();
+        loadNavbar();
+    </script>
+</body>
+</html>

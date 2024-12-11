@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sort Visualizer - Bubble Sort</title>
+    <link rel="stylesheet" href="/assets/styles/SortInfo.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+</head>
+<body>
+    <div id="sort-cover">
+        <div class="info-parent">
+                <div class="sort-description" >
+                    <div class="description-box">
+                        <h2>BUBBLE SORT</h2>
+                        <br>
+                        <p>
+                        Bubble Sort is a simple sorting algorithm that repeatedly steps through the list to be sorted, compares adjacent elements, and swaps them if they are in the wrong order. 
+                        The process is repeated until no swaps are needed, which means the list is sorted.
+                    </p>
+                    </div>
+                </div>
+
+
+                <div class="content-container">
+                    <div id="table-container" data-aos="fade-right" data-aos-delay="250" data-aos-easing="ease-in-out">
+                        <div class="table-box">
+                            <h2>TIME COMPLEXITY</h2>
+                            <table class="sort-table">
+                                <tr>
+                                    <th>Average Complexity</th>
+                                    <td>O(n<sup>2</sup>)</td>
+                                </tr>
+                                <tr>
+                                    <th>Best Case</th>
+                                    <td>O(n)</td>
+                                </tr>
+                                <tr>
+                                    <th>Worst Case</th>
+                                    <td>O(n<sup>2</sup>)</td>
+                                </tr>
+                            </table>
+                        </div>
+                        </div>
+
+                        
+                    <div class="container" data-aos="fade-up" data-aos-delay="250" data-aos-easing="ease-in-out">
+                        <div class="pseudocode">
+                        <pre><h2>PSEUDOCODE</h2>
+for i from 1 to N 
+for į from 0 to N- 1 
+if a[j] > a[j + 1] 
+swap (a[j], a[j + 1])
+    </pre>
+                </div>           
+                </div>
+            
+                    <div id="youtube-container" data-aos="fade-left" data-aos-delay="250" data-aos-easing="ease-in-out">
+                      <div class="video-container">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/xli_FI7CuzA?si=8MXh9uhqEkWsaCr8" title="YouTube video player" frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                </div>
+             </div>
+        </div>
+    <div id="navbar-placeholder"></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="/base.js"></script>
+    <script>
+         AOS.init();
+        loadNavbar();
+    </script>
+</body>
+</html>

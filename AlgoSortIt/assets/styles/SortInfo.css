@@ -1,0 +1,288 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Limelight&family=Lora:ital,wght@0,400..700;1,400..700&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Carter+One&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Limelight&family=Lora:ital,wght@0,400..700;1,400..700&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Lora", serif;
+}
+
+#sort-cover {
+    position: relative;
+    min-height: 100vh;
+    width: 100%;
+    display: block;
+
+}
+
+.info-parent {
+    width: 90%;
+    margin: 160px auto;
+    color: black;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.sort-description {
+    margin-left: 20px;
+    font-size: 20px;
+    max-width: 65%; 
+    align-items: center;
+    text-align: justify;
+    line-height: 1.6;
+}
+
+
+.sort-description h2 {
+    font-family: "Arial", "Helvetica", sans-serif;
+    font-size: 35px;
+}
+
+.description-box h2, .table-box h2, .pseudocode h2 {
+    font-family: "Carter One", serif;
+    font-size: 36px;
+    margin-bottom: 15px;
+}
+
+.description-box p{
+    font-size: 24px;
+    font-family: "Lora", serif;
+}
+
+.content-container {
+    display: flex;
+    gap: 15px; 
+    flex-wrap: wrap; 
+}
+
+#table-container {
+    border-radius: 10px;
+    background: #D9DCD6;
+    border: 2px solid whitesmoke;
+    margin-top: 50px;
+    margin-left: 30px;
+    width: 480px;
+    height: 350px;
+    padding: 2px;
+}
+
+.table-box {
+    margin: 30px; 
+    text-align: justify;
+}
+
+.sort-table {
+    border-collapse: collapse;
+    width: 90%;
+    border-radius: 5px; 
+    margin-top: 40px;
+}
+
+.sort-table th, .sort-table td {
+    border: 2px solid #16425b;
+    padding: 10px;
+    font-size: 1.2rem;
+}
+
+.sort-table th {
+    border-right: 2px solid #16425b;
+}
+
+.pseudocode{
+    margin: 30px; 
+    text-align: justify;
+}
+
+.pseudocode pre {
+    margin-bottom: 15px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 22px;
+}
+.pseudocode h2{
+    font-size: 36px;
+}
+
+.toggle-arrow {
+    cursor: pointer;
+    margin-left: 16px;
+    user-select: none;
+}
+.arrow-icon {
+    width: 18px;
+    height: 18px;
+    vertical-align: middle;
+}
+
+#pseudocodeContainer {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    white-space: pre-wrap; 
+    overflow: auto;
+    max-width: 100%; 
+}
+
+
+.container{
+    border-radius: 10px;
+    background: #D9DCD6;
+    border: 2px solid whitesmoke;
+    margin-top: 50px;
+    margin-left: 30px;
+    width: 500px; 
+    height: 350px;
+}
+
+
+#merge-container {
+    border-radius: 10px;
+    background: #D9DCD6;
+    border: 2px solid whitesmoke;
+    margin-top: 50px;
+    margin-left: 30px;
+    width: 550px; 
+    height: 350px;
+}
+
+#merge-container.open {
+    height: auto; 
+}
+
+.hidden-text {
+    font-family: inherit;
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: opacity 0.10s ease-in-out, max-height 0.10s ease-in-out;
+}
+
+#merge-container.open .hidden-text {
+    opacity: 1;
+    max-height: 100vh; 
+}
+
+#quick-container.open {
+    height: auto; 
+}
+
+#quick-container.open .hidden-text {
+    opacity: 1;
+    max-height: 100vh; 
+}
+
+#quick-container {
+    border-radius: 10px;
+    background: #D9DCD6;
+    border: 2px solid whitesmoke;
+    margin-top: 50px;
+    margin-left: 30px;
+    width: 550px; 
+    height: 350px;
+}
+
+
+#youtube-container {
+    border-radius: 10px;
+    background: #D9DCD6;
+    border: 2px solid whitesmoke;
+    margin-top: 50px;
+    margin-left: 30px;
+    padding: 35px;
+    width: 480px;
+    height: 350px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.video-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.video-container iframe {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 10px;
+}
+
+@media (min-width: 1024px) {
+    #table-container, #youtube-container, .container, #merge-container, #quick-container{
+        width: 500px;
+        margin-left: 20px;
+    }
+    #pseudocodeContainer {
+        flex-wrap: wrap;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        white-space: pre-wrap;
+        font-size: 20px;
+        padding: 10px;
+    }
+}
+
+
+@media (max-width: 1024px) {
+    #table-container, #youtube-container, .container, #merge-container, #quick-container{
+        width: 85%;
+        margin: 10px auto;
+        height: auto;
+        margin-left: 20px;
+    }
+
+
+    .sort-description {
+        font-size: 18px;
+        max-width: 100%;
+    }
+    .content-container {
+        flex-direction: column;
+        flex-wrap: wrap; 
+    }
+
+    .sort-description h2 {
+        font-size: 28px;
+    }
+
+    .content-container {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 768px) {
+    #table-container, #youtube-container, .container,#merge-container, #quick-container {
+        width: 95%; 
+        margin: 10px auto;
+        height: auto;
+    }
+
+    #pseudocodeContainer {
+        flex-wrap: wrap;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        white-space: pre-wrap;
+        font-size: 20px;
+        padding: 10px;
+    }
+    .sort-description {
+        font-size: 16px;
+    }
+
+    .sort-description h2 {
+        font-size: 24px;
+    }
+
+    .sort-table th, .sort-table td {
+        font-size: 1rem;
+        padding: 8px;
+    }
+
+    .pseudocode pre {
+        font-size: 18px;
+    }
+
+}
